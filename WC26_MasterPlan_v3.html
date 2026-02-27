@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WC26 NFT Fantasy — Master Plan v3</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Barlow+Condensed:wght@600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#050c15;--ink2:#070f1c;--ink3:#091422;
+  --card:#0d1d2e;--card2:#101f30;
+  --line:#162a40;--line2:#1d3650;
+  --g:#00e676;--gd:rgba(0,230,118,.1);--gdd:rgba(0,230,118,.05);
+  --gold:#f5c842;--goldd:rgba(245,200,66,.1);
+  --sky:#38bdf8;--skyd:rgba(56,189,248,.1);
+  --orng:#fb923c;--orgnd:rgba(251,146,60,.1);
+  --rose:#f87171;--rosed:rgba(248,113,113,.1);
+  --vio:#a78bfa;--viod:rgba(167,139,250,.1);
+  --teal:#2dd4bf;--teald:rgba(45,212,191,.1);
+  --txt:#c8dff0;--muted:#5a7a99;--dim:#243d55;
+  --f1:'Barlow Condensed',sans-serif;
+  --f2:'Be Vietnam Pro',sans-serif;
+  --f3:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--txt);font-family:var(--f2);font-size:14px;line-height:1.6;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--ink2);}::-webkit-scrollbar-thumb{background:var(--line2);}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;inset-x:0;z-index:900;height:50px;display:flex;align-items:center;gap:2px;padding:0 18px;background:rgba(5,12,21,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);overflow-x:auto;}
+nav::-webkit-scrollbar{height:0;}
+.logo{font-family:var(--f1);font-size:22px;letter-spacing:3px;color:var(--g);margin-right:18px;white-space:nowrap;flex-shrink:0;}
+.nl{font-family:var(--f3);font-size:10px;color:var(--muted);padding:5px 9px;border-radius:3px;text-decoration:none;white-space:nowrap;transition:.12s;border:1px solid transparent;}
+.nl:hover{color:var(--txt);border-color:var(--line);}
+.nl.on{color:var(--g);background:var(--gdd);border-color:rgba(0,230,118,.2);}
+.sep{color:var(--dim);padding:0 3px;cursor:default;font-size:11px;}
+
+/* ── WRAP ── */
+.w{max-width:1380px;margin:0 auto;padding:70px 20px 60px;}
+section{margin-bottom:72px;scroll-margin-top:58px;}
+.lbl{font-family:var(--f3);font-size:9px;letter-spacing:3px;color:var(--g);text-transform:uppercase;margin-bottom:6px;}
+.sec-h{font-family:var(--f1);font-size:30px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:3px;}
+.sec-bar{height:1px;background:linear-gradient(90deg,var(--line2),transparent);margin-bottom:18px;}
+.sub{color:var(--muted);font-size:13px;margin-bottom:18px;line-height:1.55;}
+
+/* ── HERO ── */
+#hero{min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 20px 60px;position:relative;overflow:hidden;}
+#hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 50% -5%,rgba(0,200,83,.07),transparent 60%),radial-gradient(ellipse 50% 40% at 90% 100%,rgba(56,189,248,.04),transparent);}
+#hero::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(22,42,64,.5) 59px,rgba(22,42,64,.5) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(22,42,64,.5) 59px,rgba(22,42,64,.5) 60px);}
+.hi{position:relative;z-index:1;}
+.h-eyebrow{font-family:var(--f3);font-size:10px;color:var(--g);letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;}
+.h-main{font-family:var(--f1);font-size:clamp(64px,10vw,130px);font-weight:800;line-height:.85;letter-spacing:-1px;background:linear-gradient(145deg,#fff 10%,var(--g) 55%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.h-sub{font-family:var(--f1);font-size:20px;font-weight:700;color:var(--muted);letter-spacing:4px;text-transform:uppercase;margin:12px 0 22px;}
+.pills{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;}
+.pill{font-family:var(--f3);font-size:10px;padding:4px 12px;border-radius:20px;border:1px solid;letter-spacing:.3px;}
+.pg{background:var(--gdd);color:var(--g);border-color:rgba(0,230,118,.3);}
+.pgo{background:var(--goldd);color:var(--gold);border-color:rgba(245,200,66,.3);}
+.ps{background:var(--skyd);color:var(--sky);border-color:rgba(56,189,248,.3);}
+.po{background:var(--orgnd);color:var(--orng);border-color:rgba(251,146,60,.3);}
+.pr{background:var(--rosed);color:var(--rose);border-color:rgba(248,113,113,.3);}
+.pv{background:var(--viod);color:var(--vio);border-color:rgba(167,139,250,.3);}
+
+/* ── SEQUENCE FLOW ── */
+.seq{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:4px;margin-bottom:24px;}
+.sq{flex:1;min-width:140px;background:var(--card);border:1px solid var(--line);padding:16px 14px;position:relative;}
+.sq:not(:last-child){border-right:none;}
+.sq:first-child{border-radius:8px 0 0 8px;}
+.sq:last-child{border-radius:0 8px 8px 0;}
+.sq::after{content:'›';position:absolute;right:-14px;top:50%;transform:translateY(-50%);font-size:22px;z-index:2;color:var(--g);line-height:1;}
+.sq:last-child::after{display:none;}
+.sq-n{font-family:var(--f3);font-size:9px;color:var(--muted);margin-bottom:5px;letter-spacing:.5px;}
+.sq-t{font-family:var(--f1);font-size:17px;letter-spacing:.5px;margin-bottom:4px;}
+.sq-v{font-family:var(--f1);font-size:24px;font-weight:400;}
+.sq-d{font-size:10px;color:var(--muted);line-height:1.4;margin-top:4px;}
+.sq-concurrent{background:rgba(56,189,248,.04);border-color:rgba(56,189,248,.25);}
+.sq-concurrent::before{content:'SONG SONG';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--sky);color:#000;font-family:var(--f3);font-size:8px;font-weight:500;padding:2px 8px;border-radius:10px;white-space:nowrap;}
+
+/* ── KPI CARDS ── */
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:20px;}
+.kp{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px;text-align:center;position:relative;overflow:hidden;}
+.kp::after{content:'';position:absolute;top:0;inset-x:0;height:2px;}
+.kp.g::after{background:var(--g);}
+.kp.go::after{background:var(--gold);}
+.kp.s::after{background:var(--sky);}
+.kp.o::after{background:var(--orng);}
+.kp.r::after{background:var(--rose);}
+.kp.v::after{background:var(--vio);}
+.kp.t::after{background:var(--teal);}
+.kv{font-family:var(--f1);font-size:28px;letter-spacing:.5px;line-height:1;}
+.kl{font-family:var(--f3);font-size:9px;color:var(--muted);margin-top:3px;letter-spacing:.3px;}
+
+/* ── TABLE ── */
+.tw{overflow-x:auto;border-radius:7px;border:1px solid var(--line);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead tr{background:var(--ink3);}
+th{padding:9px 11px;text-align:left;font-family:var(--f3);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;white-space:nowrap;border-bottom:1px solid var(--line);}
+td{padding:8px 11px;vertical-align:top;border-bottom:1px solid rgba(22,42,64,.7);}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:rgba(255,255,255,.013);}
+.tsg td{font-family:var(--f3);font-size:9px;color:var(--g);letter-spacing:2px;text-transform:uppercase;padding:7px 11px;background:rgba(0,230,118,.04);}
+.ttot td{font-weight:700;color:var(--g);background:rgba(0,230,118,.06);}
+.tgrand td{font-family:var(--f1);font-size:16px;color:var(--gold);background:rgba(245,200,66,.07);border-top:1px solid rgba(245,200,66,.2);}
+.thl{background:rgba(56,189,248,.03);}
+td.g{color:#4ade80;}td.go{color:var(--gold);}td.sk{color:var(--sky);}td.or{color:var(--orng);}td.ro{color:var(--rose);}td.vi{color:var(--vio);}td.tl{color:var(--teal);}td.mu{color:var(--muted);}
+
+/* ── CARD ── */
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;}
+.ct{font-family:var(--f1);font-size:15px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:900px){.g3,.g4{grid-template-columns:1fr 1fr;}.g2{grid-template-columns:1fr;}}
+@media(max-width:580px){.g3,.g4,.g2{grid-template-columns:1fr;}}
+
+/* ── ALLOCATION BAR ── */
+.alloc{margin:8px 0;}
+.alloc-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.alloc-bar-bg{flex:1;height:7px;background:var(--line);border-radius:4px;overflow:hidden;}
+.alloc-bar{height:100%;border-radius:4px;}
+.alloc-lbl{font-family:var(--f3);font-size:10px;white-space:nowrap;min-width:180px;}
+.alloc-val{font-family:var(--f1);font-size:14px;min-width:60px;text-align:right;}
+
+/* ── INFO BOX ── */
+.box{border-radius:7px;padding:12px 14px;margin:10px 0;border-left:3px solid;}
+.tip{background:rgba(0,230,118,.05);border-color:var(--g);}
+.warn{background:rgba(245,200,66,.05);border-color:var(--gold);}
+.danger{background:rgba(248,113,113,.06);border-color:var(--rose);}
+.note{background:rgba(56,189,248,.05);border-color:var(--sky);}
+.box .bt{font-family:var(--f3);font-size:9px;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.box p,.box li{font-size:12px;color:var(--muted);line-height:1.55;}
+.box ul{margin-left:14px;}
+
+/* ── BADGE ── */
+.b{display:inline-block;padding:2px 8px;border-radius:3px;font-family:var(--f3);font-size:9px;font-weight:500;letter-spacing:.3px;}
+.bg{background:var(--gdd);color:var(--g);}
+.bgo{background:var(--goldd);color:var(--gold);}
+.bs{background:var(--skyd);color:var(--sky);}
+.bo{background:var(--orgnd);color:var(--orng);}
+.br{background:var(--rosed);color:var(--rose);}
+.bv{background:var(--viod);color:var(--vio);}
+.bx{background:rgba(90,122,153,.1);color:var(--muted);}
+
+/* ── ACCORD ── */
+details{margin-bottom:8px;}
+summary{cursor:pointer;background:var(--card2);border:1px solid var(--line);border-radius:5px;padding:10px 14px;font-family:var(--f1);font-size:14px;text-transform:uppercase;letter-spacing:.5px;list-style:none;display:flex;align-items:center;gap:8px;user-select:none;transition:.12s;}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:'▶';font-size:8px;color:var(--muted);transition:.15s;flex-shrink:0;}
+details[open]>summary::before{transform:rotate(90deg);}
+details[open]>summary{border-color:var(--g);color:var(--g);}
+.db{background:var(--card);border:1px solid var(--line);border-top:none;border-radius:0 0 5px 5px;padding:14px;}
+
+/* ── CHECKLIST ── */
+.cl{list-style:none;}
+.ci{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid rgba(22,42,64,.6);}
+.ci:last-child{border-bottom:none;}
+.cb{width:16px;height:16px;border:2px solid var(--line2);border-radius:3px;flex-shrink:0;margin-top:2px;cursor:pointer;transition:.12s;display:flex;align-items:center;justify-content:center;}
+.cb:hover{border-color:var(--g);}
+.cb.done{background:var(--g);border-color:var(--g);}
+.cb.done::after{content:'✓';font-size:9px;color:#000;font-weight:700;}
+.ci-b{flex:1;}.ci-t{font-size:13px;}.ci-m{font-family:var(--f3);font-size:9px;color:var(--muted);margin-top:2px;display:flex;gap:10px;flex-wrap:wrap;}
+.ci-m .tool{color:var(--sky);}.ci-m .who{color:var(--vio);}.ci-m .due{color:var(--gold);}
+.ci-cost{font-family:var(--f1);font-size:14px;color:var(--gold);min-width:70px;text-align:right;}
+
+/* ── WORKFLOW ── */
+.wf{background:var(--ink3);border:1px solid var(--line);border-radius:8px;padding:16px;margin-bottom:12px;position:relative;overflow:hidden;}
+.wf::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--g);}
+.wf.sky::before{background:var(--sky);}
+.wf.gold::before{background:var(--gold);}
+.wf.orng::before{background:var(--orng);}
+.wf.rose::before{background:var(--rose);}
+.wf.vio::before{background:var(--vio);}
+.wf-t{font-family:var(--f1);font-size:16px;text-transform:uppercase;letter-spacing:.5px;color:var(--g);margin-bottom:12px;padding-left:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.wf.sky .wf-t{color:var(--sky);}
+.wf.gold .wf-t{color:var(--gold);}
+.wf.orng .wf-t{color:var(--orng);}
+.wf.rose .wf-t{color:var(--rose);}
+.wf.vio .wf-t{color:var(--vio);}
+.steps{display:flex;gap:0;overflow-x:auto;margin-left:8px;padding-bottom:4px;}
+.step{background:var(--card);border:1px solid var(--line);padding:11px 10px;flex:1;min-width:110px;position:relative;}
+.step:not(:last-child){border-right:none;}
+.step:first-child{border-radius:5px 0 0 5px;}
+.step:last-child{border-radius:0 5px 5px 0;}
+.step:not(:last-child)::after{content:'›';position:absolute;right:-11px;top:50%;transform:translateY(-50%);color:var(--g);font-size:18px;z-index:2;background:var(--card);line-height:1;}
+.sn{font-family:var(--f3);font-size:8px;color:var(--muted);margin-bottom:4px;}
+.st{font-family:var(--f1);font-size:12px;margin-bottom:2px;}
+.stool{color:var(--sky);font-family:var(--f3);font-size:10px;}
+.sd{color:var(--muted);font-size:10px;margin-top:2px;line-height:1.4;}
+.wf-note{font-size:11px;color:var(--muted);margin-top:10px;padding:8px 12px;border-top:1px solid var(--line);line-height:1.6;padding-left:20px;}
+
+/* ── TG BLOCK ── */
+.tg-block{background:linear-gradient(135deg,rgba(0,100,160,.14),rgba(0,60,100,.08));border:1px solid rgba(56,189,248,.22);border-radius:8px;padding:16px;margin:12px 0;}
+.tg-t{font-family:var(--f1);font-size:16px;color:var(--sky);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.tg-msg{background:rgba(0,0,0,.45);border-radius:7px;padding:12px 14px;font-family:var(--f3);font-size:11px;color:var(--muted);line-height:1.85;border:1px solid rgba(56,189,248,.08);margin-bottom:8px;}
+.tg-msg .from{color:var(--sky);font-weight:700;}
+.tg-msg .title{color:var(--txt);font-weight:700;margin-bottom:4px;}
+.btn-r{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.tgbtn{font-family:var(--f3);font-size:10px;padding:5px 14px;border-radius:4px;border:1px solid;cursor:default;letter-spacing:.3px;}
+.tgbtn.ap{background:rgba(0,230,118,.1);border-color:var(--g);color:var(--g);}
+.tgbtn.rj{background:rgba(248,113,113,.1);border-color:var(--rose);color:var(--rose);}
+.tgbtn.ed{background:rgba(245,200,66,.1);border-color:var(--gold);color:var(--gold);}
+.tgbtn.vw{background:rgba(56,189,248,.08);border-color:var(--sky);color:var(--sky);}
+
+/* ── AI MODULE ── */
+.ai-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:14px;}
+.ai{background:var(--card);border:1px solid var(--line);border-radius:7px;padding:13px;}
+.ai-code{font-family:var(--f3);font-size:10px;padding:2px 9px;border-radius:10px;display:inline-block;margin-bottom:7px;letter-spacing:1px;}
+.ai-name{font-family:var(--f1);font-size:16px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+.ai-role{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:7px;}
+.ai-kpi{font-family:var(--f3);font-size:10px;line-height:1.8;}
+.ai-tags{margin-top:7px;display:flex;flex-wrap:wrap;gap:3px;}
+.tag{font-family:var(--f3);font-size:9px;padding:1px 7px;border-radius:2px;background:var(--ink3);border:1px solid var(--line);color:var(--muted);}
+
+/* ── ROI TABLE ── */
+.roi-table table td:first-child{font-family:var(--f3);font-size:10px;color:var(--muted);}
+
+/* ── MISC ── */
+.tg{color:var(--g);}.tgo{color:var(--gold);}.ts{color:var(--sky);}.to{color:var(--orng);}.tr{color:var(--rose);}.tv{color:var(--vio);}.tt{color:var(--teal);}
+.mono{font-family:var(--f3);}
+.mt8{margin-top:8px;}.mt12{margin-top:12px;}.mt16{margin-top:16px;}.mt20{margin-top:20px;}
+.mb8{margin-bottom:8px;}.mb12{margin-bottom:12px;}.mb16{margin-bottom:16px;}
+.price-tag{font-family:var(--f1);font-size:28px;line-height:1;}
+hr.d{border:none;border-top:1px solid var(--line);margin:14px 0;}
+.total-bar{background:linear-gradient(90deg,rgba(0,230,118,.08),rgba(245,200,66,.04));border:1px solid rgba(0,230,118,.2);border-radius:6px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.total-bar .label{font-family:var(--f3);font-size:10px;color:var(--muted);letter-spacing:.5px;}
+.total-bar .value{font-family:var(--f1);font-size:26px;color:var(--g);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="logo">WC26</span>
+  <a class="nl" href="#overview">Overview</a>
+  <span class="sep">|</span>
+  <a class="nl" href="#infra">💻 Infra & Costs</a>
+  <span class="sep">|</span>
+  <a class="nl" href="#tokenomics">Tokenomics</a>
+  <a class="nl" href="#seed">Seed R1–R3</a>
+  <a class="nl" href="#community">Community Sale</a>
+  <a class="nl" href="#stadium">Stadium NFT</a>
+  <a class="nl" href="#mystery">Mystery Box</a>
+  <span class="sep">|</span>
+  <a class="nl" href="#user-acq">10M Users</a>
+  <a class="nl" href="#ai-army">AI Army</a>
+  <a class="nl" href="#tg-ops">TG Ops</a>
+  <a class="nl" href="#workflow-setup">Setup Guide</a>
+  <a class="nl" href="#ai-autonomous">Autonomous Ops</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hi">
+    <div class="h-eyebrow">⚽ NFT · FANTASY · FOOTBALL · WORLD CUP 2026 — Master Plan v3.0</div>
+    <div class="h-main">WC26<br>NFT FANTASY</div>
+    <div class="h-sub">Seed R1 → R2 → R3 → Community Sale + Stadium · Mystery Boxes</div>
+    <div class="pills">
+      <span class="pill pg">Total Seed: $75,000</span>
+      <span class="pill pgo">Community Sale: $188,500</span>
+      <span class="pill ps">Stadium NFT: $150,000</span>
+      <span class="pill po">Total Expected: $413,500</span>
+      <span class="pill pv">Mystery Box (MAX): $3,237,000</span>
+      <span class="pill pr">🏆 WC Kick-off: 11/6/2026</span>
+    </div>
+  </div>
+</section>
+
+<div class="w">
+
+<!-- ════════════════════════ 01 OVERVIEW + SEQUENCE -->
+<section id="overview">
+  <div class="lbl">01 — Overview & Fundraising Sequence</div>
+  <div class="sec-h"><span class="tg">■</span> FUNDRAISING SEQUENCE — CORRECT ORDER</div>
+  <div class="sec-bar"></div>
+  <p class="sub">Thứ tự bắt buộc: Bán Seed xong hoàn toàn → Community/Public Sale (đồng thời chạy Stadium NFT Auction) → Sau khi chuẩn bị Games Launch xong → Mystery Box Sale.</p>
+
+  <div class="seq">
+    <div class="sq" style="border-top:3px solid var(--rose);">
+      <div class="sq-n">BƯỚC 1</div>
+      <div class="sq-t" style="color:var(--rose);">SEED ROUNDS</div>
+      <div class="sq-v" style="color:var(--rose);">$75,000</div>
+      <div class="sq-d">R1 ($25K) → R2 ($22.5K) → R3 ($27.5K)<br>Vanguard packs. Tuần tự từng round.</div>
+    </div>
+    <div class="sq" style="border-top:3px solid var(--sky);">
+      <div class="sq-n">BƯỚC 2A</div>
+      <div class="sq-t" style="color:var(--sky);">COMMUNITY SALE</div>
+      <div class="sq-v" style="color:var(--sky);">$188,500</div>
+      <div class="sq-d">29M tokens × $0.0065<br>3 phases: Whitelist → FCFS → Lottery</div>
+    </div>
+    <div class="sq" style="border-top:3px solid var(--gold);">
+      <div class="sq-n">BƯỚC 2B — CÙNG GIAI ĐOẠN</div>
+      <div class="sq-t" style="color:var(--gold);">STADIUM NFT</div>
+      <div class="sq-v" style="color:var(--gold);">$150,000</div>
+      <div class="sq-d">16 venues · English Auction<br>Chạy đồng thời với Community Sale</div>
+    </div>
+    <div class="sq" style="border-top:3px solid var(--vio);">
+      <div class="sq-n">BƯỚC 3 — SAU GAMES LAUNCH</div>
+      <div class="sq-t" style="color:var(--vio);">MYSTERY BOX</div>
+      <div class="sq-v" style="color:var(--vio);">$3.24M</div>
+      <div class="sq-d">Rising + Elite + Legacy<br>→ DAO Treasury $1,456,650 (MAX)</div>
+    </div>
+  </div>
+
+  <!-- KPI Summary -->
+  <div class="kpi-g">
+    <div class="kp g"><div class="kv tg">$75,000</div><div class="kl">Total Seed (R1+R2+R3)</div></div>
+    <div class="kp s"><div class="kv ts">$188,500</div><div class="kl">Community Sale</div></div>
+    <div class="kp go"><div class="kv tgo">$150,000</div><div class="kl">Stadium NFT Auction</div></div>
+    <div class="kp o"><div class="kv to">$413,500</div><div class="kl">Total Expected (Seed+CS+NFT)</div></div>
+    <div class="kp v"><div class="kv tv">$3,237,000</div><div class="kl">Mystery Box Total (MAX)</div></div>
+    <div class="kp r"><div class="kv tr">$1,456,650</div><div class="kl">DAO Treasury từ Mystery Box</div></div>
+    <div class="kp t"><div class="kv" style="color:var(--teal);font-family:var(--f1);font-size:24px;">$38–71K</div><div class="kl">Total Infra + Ops + Marketing</div></div>
+    <div class="kp g"><div class="kv tg">10M</div><div class="kl">Target Users (≤ 11/6/2026)</div></div>
+  </div>
+
+
+</section>
+
+<!-- ════════════════════════ 01B INFRASTRUCTURE & COSTS -->
+<section id="infra">
+  <div class="lbl">01B — Infrastructure & AI Tools Budget</div>
+  <div class="sec-h"><span class="ts">■</span> SYSTEM SETUP, AI TOOLS, WORKFLOWS, LEGAL, MARKETING</div>
+  <div class="sec-bar"></div>
+  <p class="sub">All operational costs from T2/2026 to WC kick-off 11/6/2026.</p>
+
+  <!-- SYSTEM SETUP -->
+  <details open>
+    <summary>🖥️ System Setup — Servers, Database, Blockchain, Storage, Monitoring</summary>
+    <div class="db">
+    <div class="tw">
+    <table>
+      <thead><tr><th>Infrastructure</th><th>Description</th><th>Cost</th><th>Labor</th><th>Total</th><th>Deadline</th><th>Note — Dùng để làm gì</th></tr></thead>
+      <tbody>
+        <tr class="tsg"><td colspan="7">① SERVERS — Nơi code chạy</td></tr>
+        <tr class="thl"><td>Hostinger VPS (1) <span class="b br">CORE</span></td><td class="mono" style="font-size:11px;">$20/mo × 12</td><td class="go">$240</td><td class="mu">$40 <span style="font-size:10px;">(2h)</span></td><td class="tg"><strong>$280</strong></td><td><span class="b bg">28-2-2026</span></td><td style="font-size:11px;">Cài đặt OpenClaw + PIQUE Telegram Bot + n8n automation + Redis<br><code style="font-size:9px;color:var(--sky);">Ubuntu 22.04 · OpenClaw :3000 · PIQUE Bot :3001 · n8n :5678 · Redis :6379 · PM2 + Nginx</code></td></tr>
+        <tr><td>Hostinger VPS (2) <span class="b bs">T4+</span></td><td class="mono" style="font-size:11px;">$40/mo × 6 (T4→T9)</td><td class="go">$240</td><td class="mu">$40 <span style="font-size:10px;">(2h)</span></td><td class="tg"><strong>$280</strong></td><td><span class="b bs">30-4-2026</span></td><td style="font-size:11px;">TMA app server + game servers (Squad Fantasy, Oracle Challenge). Tách riêng khỏi VPS1 để game crash không ảnh hưởng AI Army.</td></tr>
+
+        <tr class="tsg"><td colspan="7">② DOMAIN & NETWORK — Địa chỉ và bảo vệ</td></tr>
+        <tr class="thl"><td>Domain (wc26nft.info / .com) <span class="b bgo">✅ DONE</span></td><td class="mono" style="font-size:11px;">Godaddy</td><td class="go">$100</td><td class="mu">$10</td><td class="tg"><strong>$110</strong></td><td><span class="b bgo">✅ DONE</span></td><td style="font-size:11px;">wc26nft.info (live) + wc26nft.com (backup redirect). Cả hai trỏ về cùng 1 hosting.</td></tr>
+        <tr><td>Cloudflare (DNS + CDN)</td><td class="mono" style="font-size:11px;">Free tier</td><td class="g">$0</td><td class="mu">$20</td><td class="tg"><strong>$20</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">DNS management cho wc26nft.info + CDN toàn cầu + DDoS protection + free SSL. Proxy traffic qua Cloudflare giúp ẩn IP thật của VPS.</td></tr>
+
+        <tr class="tsg"><td colspan="7">③ DATABASE & CACHE — Nơi lưu data</td></tr>
+        <tr class="thl"><td>Supabase (DB + Auth) <span class="b br">CORE</span></td><td class="mono" style="font-size:11px;">Free → $25/mo (T4+)</td><td class="g">$0 → $150</td><td class="mu">$40 <span style="font-size:10px;">(schema)</span></td><td class="tg"><strong>$40–$190</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">PostgreSQL lưu toàn bộ data: 10M users, airdrop points, referrals, squad data, NFT ownership. REST API tự động — PIQUE Bot và n8n gọi thẳng vào, không cần viết backend riêng. Free đến 500MB / ~50K users.</td></tr>
+        <tr><td>Redis Cache <span class="b bg">VPS1 — Free</span></td><td class="mono" style="font-size:11px;">Self-hosted trên VPS1</td><td class="g">$0</td><td class="mu">$20 <span style="font-size:10px;">(1h)</span></td><td class="tg"><strong>$20</strong></td><td><span class="b bs">T4/2026</span></td><td style="font-size:11px;">Cache in-memory trên VPS1 (~50MB RAM). Giải quyết 3 vấn đề khi scale: (1) Top 100 leaderboard cache 5 phút — không query Supabase liên tục; (2) User session tokens TMA; (3) Rate limit counters Anti-Sybil realtime. Cài: <code>apt install redis-server</code></td></tr>
+
+        <tr class="tsg"><td colspan="7">④ BLOCKCHAIN — Kết nối Polygon</td></tr>
+        <tr class="thl"><td>QuickNode (Primary RPC) <span class="b br">CRITICAL</span></td><td class="mono" style="font-size:11px;">$49/mo Starter</td><td class="go">$294</td><td class="mu">$20</td><td class="tg"><strong>$314</strong></td><td><span class="b bs">T3/2026</span></td><td style="font-size:11px;">RPC node chính để gọi Polygon blockchain: mint NFT, đọc balance, xử lý airdrop, Oracle Challenge. Public RPC miễn phí bị rate limit ngay khi có vài trăm concurrent users — không dùng được cho production. QuickNode = dedicated, 99.9% uptime.</td></tr>
+        <tr><td>Alchemy (Backup RPC) <span class="b bg">Free</span></td><td class="mono" style="font-size:11px;">Alchemy — Free tier</td><td class="g">$0</td><td class="mu">$10</td><td class="tg"><strong>$10</strong></td><td><span class="b bs">T3/2026</span></td><td style="font-size:11px;">Backup RPC khi QuickNode có sự cố. Free tier: 300M compute units/mo — đủ làm backup. n8n tự động switch sang Alchemy nếu QuickNode down (Flow 5 — Contract Monitor). Không tốn tiền thêm.</td></tr>
+
+        <tr class="tsg"><td colspan="7">⑤ STORAGE — Lưu trữ NFT</td></tr>
+        <tr class="thl"><td>Pinata IPFS (NFT metadata)</td><td class="mono" style="font-size:11px;">Free 1GB → $20/mo Starter</td><td class="g">$0 → $120</td><td class="mu">$20 <span style="font-size:10px;">(script)</span></td><td class="tg"><strong>$20–$140</strong></td><td><span class="b bs">T4/2026</span></td><td style="font-size:11px;">Lưu vĩnh viễn trên IPFS: 752,000 metadata JSON + ~1,000 base artworks (generative layers). Bắt buộc cho ERC-721 — OpenSea/Blur yêu cầu IPFS, không chấp nhận server thường. Upload bằng script Pinata SDK, không làm thủ công. Upgrade lên Starter $20/mo (20GB) tại T4.</td></tr>
+
+        <tr class="tsg"><td colspan="7">⑥ CODE & FRONTEND — Quản lý code</td></tr>
+        <tr class="thl"><td>GitHub + GitHub Pages <span class="b bgo">✅ LIVE</span></td><td class="mono" style="font-size:11px;">Free — wc26nft.info live</td><td class="g">$0</td><td class="mu">$10</td><td class="tg"><strong>$10</strong></td><td><span class="b bgo">✅ DONE</span></td><td style="font-size:11px;"><strong>GitHub</strong>: lưu toàn bộ source code (smart contracts, PIQUE Bot, TMA, n8n scripts) — private repos, version control, Codex pull từ đây.<br><strong>GitHub Pages</strong>: tự động host wc26nft.info từ repo — Landing page + Whitepaper đang live. Cùng 1 tài khoản, không tốn thêm gì.</td></tr>
+
+        <tr class="tsg"><td colspan="7">⑦ MONITORING & ALERTS — Giám sát 24/7</td></tr>
+        <tr class="thl"><td>BetterUptime (monitoring)</td><td class="mono" style="font-size:11px;">Free → $20/mo (T6 WC Live)</td><td class="g">$0 → $20</td><td class="mu">$20</td><td class="tg"><strong>$20–$40</strong></td><td><span class="b bs">T3/2026</span></td><td style="font-size:11px;">Ping 6 endpoints mỗi 3 phút (free): VPS1, VPS2, TMA API, wc26nft.info, Supabase, QuickNode RPC. Phát hiện down trong 3–6 phút → webhook → n8n → TG alert khẩn. Tạo status page công khai <code>status.wc26nft.info</code> miễn phí. Upgrade lên 1 phút check ($20/mo) khi WC Live bắt đầu T6.</td></tr>
+        <tr><td>Sentry (error tracking)</td><td class="mono" style="font-size:11px;">Free 5K errors/mo</td><td class="g">$0</td><td class="mu">$15</td><td class="tg"><strong>$15</strong></td><td><span class="b bs">T3/2026</span></td><td style="font-size:11px;">Ghi lại chính xác lỗi code khi PIQUE Bot hoặc TMA crash: dòng code lỗi, stack trace, tần suất. BetterUptime chỉ biết "service down" — Sentry biết "tại sao". Cài SDK vào PIQUE Bot + TMA, free 5K errors/mo là đủ.</td></tr>
+
+        <tr class="tsg"><td colspan="7">⑧ COMMUNICATION — Email & Analytics</td></tr>
+        <tr class="thl"><td>Resend (transactional email)</td><td class="mono" style="font-size:11px;">Free 3K/mo → $20/mo</td><td class="g">$0 → $20</td><td class="mu">$15</td><td class="tg"><strong>$15–$35</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">Gửi email tự động qua n8n: SAFT confirmation cho Seed investors, Community Sale receipt, KYC confirmation, Docsend follow-up. API đơn giản hơn SendGrid, native n8n node. Free 3,000 emails/mo đủ dùng đến T5.</td></tr>
+        <tr><td>Plausible Analytics</td><td class="mono" style="font-size:11px;">$9/mo hoặc self-host $0</td><td class="g">$0–$54</td><td class="mu">$10</td><td class="tg"><strong>$10–$64</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">Website analytics cho wc26nft.info: traffic nguồn nào (TG, Twitter, KOL), trang nào được đọc nhiều, bounce rate. Thay Google Analytics vì: crypto community ghét Google tracking, GDPR-compliant, script nhẹ hơn 10×. Self-host trên VPS1 = $0 hoặc cloud $9/mo.</td></tr>
+
+        <tr class="tsg"><td colspan="7">⑨ BUSINESS TOOLS — Investor & Operations</td></tr>
+        <tr class="thl"><td>Docsend (investor tracking)</td><td class="mono" style="font-size:11px;">$15/mo × 6 (T2→T7)</td><td class="go">$90</td><td class="mu">$10</td><td class="tg"><strong>$100</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">Gửi pitch deck dưới dạng link có tracking: biết investor nào mở, đọc slide nào lâu nhất, mở bao nhiêu lần. Webhook → n8n → TG alert khi investor mở lần 2+. Có thể tắt link bất cứ lúc nào. Thay vì gửi PDF không biết ai đọc.</td></tr>
+        <tr><td>Notion Team (2 seats)</td><td class="mono" style="font-size:11px;">$16/mo × 6</td><td class="go">$96</td><td class="mu">$80 <span style="font-size:10px;">(6 DBs)</span></td><td class="tg"><strong>$176</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">Command Center: Timeline, Finance tracker, AI Army Log, Marketing calendar, Investor CRM, Smart Contract Registry. SaaS — không cần cài trên VPS. n8n auto-log mọi AI Army activity vào đây.</td></tr>
+
+        <tr class="tsg"><td colspan="7">⑩ DATA FEEDS — Dữ liệu bóng đá</td></tr>
+        <tr class="thl"><td>API-Football Pro</td><td class="mono" style="font-size:11px;">$15/mo × 6 (T3→T8)</td><td class="go">$90</td><td class="mu">$30</td><td class="tg"><strong>$120</strong></td><td><span class="b bs">T3/2026</span></td><td style="font-size:11px;">Live match data, player stats, injuries, fixtures, standings. Feed cho: PIQUE predictions, AI Daily Quiz, Draft Simulator, Oracle Challenge scoring. Không có cái này = PIQUE Bot không có data để hoạt động.</td></tr>
+
+        <tr class="tgrand"><td colspan="2"><strong>SUBTOTAL SYSTEM SETUP</strong></td><td><strong>$1,190–$1,558</strong></td><td><strong>$410</strong></td><td><strong class="tg">$1,600–$1,968</strong></td><td colspan="2">QuickNode $294 là chi phí lớn nhất · Phần lớn còn lại FREE hoặc &lt;$20/mo</td></tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+  </details>
+
+  <!-- AI TOOLS -->
+  <details open>
+    <summary>🤖 AI Tools + Services — Human Tools & OpenClaw LLM APIs</summary>
+    <div class="db">
+    <div class="tw">
+    <table>
+      <thead><tr><th>AI Tool</th><th>Description</th><th>Cost</th><th>Labor</th><th>Total</th><th>Deadline</th><th>Note — Dùng để làm gì</th></tr></thead>
+      <tbody>
+        <tr class="tsg"><td colspan="7">A · BẠN DÙNG THỦ CÔNG — Human-facing subscriptions</td></tr>
+        <tr class="thl"><td>Claude Pro <span class="b bg">BẠN DÙNG</span></td><td class="mono" style="font-size:11px;">$100/mo × 6 (T2→T7)</td><td class="go"><strong>$600</strong></td><td class="mu">$0</td><td class="tg"><strong>$600</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;"><strong>Bạn dùng trực tiếp:</strong> viết strategy, review content, draft investor emails, approve summaries, research. Khác với Claude API bên dưới — cái này bạn chat tay, không phải OpenClaw gọi.</td></tr>
+        <tr><td>Perplexity Pro <span class="b bg">BẠN DÙNG</span></td><td class="mono" style="font-size:11px;">$20/mo × 6 (T2→T7)</td><td class="go">$120</td><td class="mu">$0</td><td class="tg"><strong>$120</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;"><strong>Bạn dùng trực tiếp:</strong> research investor backgrounds, competitor intel (Sorare, NFT Fantasy), market sizing, verify thông tin trước khi approve PIQUE post.</td></tr>
+        <tr class="thl"><td>Midjourney Standard <span class="b bg">BẠN DÙNG</span></td><td class="mono" style="font-size:11px;">$8/mo × 12</td><td class="go"><strong>$96</strong></td><td class="mu">$40</td><td class="tg"><strong>$136</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;"><strong>Bạn dùng trực tiếp:</strong> gen ~1,000 base Player NFT artworks (generative layers) + 16 Stadium NFT artworks + social media graphics + meme templates cho AMF agent.</td></tr>
+        <tr><td>Canva Pro <span class="b bg">BẠN DÙNG</span></td><td class="mono" style="font-size:11px;">$13/mo × 12</td><td class="go">$156</td><td class="mu">$20</td><td class="tg"><strong>$176</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;"><strong>Bạn dùng trực tiếp:</strong> announcement graphics, KOL media kits, TG channel banners, investor deck visuals, Stadium NFT promotional materials.</td></tr>
+        <tr class="thl"><td>Gamma.app <span class="b bx">T2–T3 only</span></td><td class="mono" style="font-size:11px;">$15/mo × 2</td><td class="go">$30</td><td class="mu">$0</td><td class="tg"><strong>$30</strong></td><td><span class="b br">T2–T3</span></td><td style="font-size:11px;"><strong>Bạn dùng trực tiếp:</strong> thiết kế Pitch Deck 10 slides cho Seed investors. Cancel ngay sau khi deck done — không cần dùng lâu dài.</td></tr>
+
+        <tr class="tsg"><td colspan="7">B · OPENCLAW GỌI TỰ ĐỘNG — LLM APIs cho AI Army (không phải bạn dùng tay)</td></tr>
+        <tr><td colspan="7" style="padding:6px 11px;font-size:11px;color:var(--muted);background:rgba(0,0,0,.2);">
+          ⚡ Đây là 3 LLM OpenClaw kết nối để chạy 8 AI agents tự động 24/7. Bạn không chat với những cái này — OpenClaw gọi qua API. Chi phí thấp vì chỉ trả theo số tokens thực sự dùng.
+        </td></tr>
+        <tr class="thl"><td>Claude API <span class="b bg">NÃO CHÍNH</span></td><td class="mono" style="font-size:11px;">Pay-per-use ~$20–30/mo</td><td class="go">$120–180</td><td class="mu">$20</td><td class="tg"><strong>$140–200</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;"><strong>OpenClaw gọi cho:</strong> PS (content 5 ngôn ngữ) · AD (daily report tiếng Việt) · AJ (bình luận match) · Approve request summaries · Investor email drafts · FAQ answers. Claude giỏi nhất về tiếng Việt và long-form reasoning.</td></tr>
+        <tr><td>GPT-4o API <span class="b bs">CODER</span></td><td class="mono" style="font-size:11px;">Pay-per-use ~$15–25/mo</td><td class="go">$90–150</td><td class="mu">$10</td><td class="tg"><strong>$100–160</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;"><strong>OpenClaw gọi cho:</strong> Codex viết smart contracts · TMA frontend components · n8n custom code nodes · Pinata upload scripts · ADS (draft simulator logic). GPT-4o tốt nhất về code generation.</td></tr>
+        <tr class="thl"><td>Perplexity API <span class="b bgo">MẮT INTERNET</span></td><td class="mono" style="font-size:11px;">Pay-per-use ~$5–10/mo</td><td class="go">$30–60</td><td class="mu">$10</td><td class="tg"><strong>$40–70</strong></td><td><span class="b bs">T3/2026</span></td><td style="font-size:11px;"><strong>OpenClaw gọi cho:</strong> AQ (fetch tin tức bóng đá realtime cho Daily Quiz) · PIQUE verify thông tin trước khi post · Research KOL trước deal · Monitor competitor news. Perplexity duy nhất có web search realtime qua API.</td></tr>
+        <tr><td>Grok API <span class="b bx">OPTIONAL T4+</span></td><td class="mono" style="font-size:11px;">$25/mo khi cần</td><td class="go">$0 → $75</td><td class="mu">$10</td><td class="tg"><strong>$10–85</strong></td><td><span class="b bx">T4/2026</span></td><td style="font-size:11px;"><strong>Thêm ở Phase 3 nếu cần:</strong> Monitor trending hashtag WC26 trên X/Twitter realtime · Phát hiện FUD về dự án · Sentiment analysis sau mỗi match. Không bắt buộc T2–T3.</td></tr>
+
+        <tr class="tsg"><td colspan="7">C · OPENCLAW ORCHESTRATOR — Điều phối toàn bộ</td></tr>
+        <tr class="thl"><td>OpenClaw Pro <span class="b bo">ORCHESTRATOR</span></td><td class="mono" style="font-size:11px;">$49/mo × 6 (T2→T7)</td><td class="go">$294</td><td class="mu">$80 <span style="font-size:10px;">(config)</span></td><td class="tg"><strong>$374</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">Bộ não điều phối — không có AI riêng, kết nối Claude API + GPT-4o + Perplexity API. Tạo 8 agents, set schedules, route tasks đến đúng LLM, monitor outputs, trigger n8n workflows khi cần approval.</td></tr>
+
+        <tr class="tsg"><td colspan="7">D · CREATIVE TOOLS — Nội dung đặc biệt</td></tr>
+        <tr><td>ElevenLabs <span class="b bx">Optional T4</span></td><td class="mono" style="font-size:11px;">$5/mo × 6</td><td class="go">$30</td><td class="mu">$10</td><td class="tg"><strong>$40</strong></td><td><span class="b bx">T4/2026</span></td><td style="font-size:11px;">AI voice-over cho WC countdown reels, video announcements, KOL support content. Optional — chỉ dùng nếu content video cần narration.</td></tr>
+
+        <tr class="tgrand"><td colspan="2"><strong>SUBTOTAL AI TOOLS</strong></td><td><strong>$1,566–$1,761</strong></td><td><strong>$190</strong></td><td><strong class="tg">$1,756–$1,951</strong></td><td colspan="2">OpenClaw $374 + Claude Pro $600 = 2 chi phí lớn nhất. API cost thực tế ~$45–70/mo.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- OpenClaw + 3 LLMs visual -->
+    <div class="card mt12">
+      <div class="ct tg">🔌 OpenClaw kết nối 3 LLM — Phân công rõ ràng</div>
+      <div class="g3 mt8">
+        <div style="background:rgba(0,230,118,.05);border:1px solid rgba(0,230,118,.2);border-radius:7px;padding:12px;">
+          <div style="font-family:var(--f1);font-size:16px;color:var(--g);margin-bottom:6px;">CLAUDE API · Não chính</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.8;">
+            ✅ Viết content 5 ngôn ngữ<br>
+            ✅ Daily report tiếng Việt<br>
+            ✅ PIQUE predictions<br>
+            ✅ Investor emails<br>
+            ✅ Approve summaries<br>
+            ✅ FAQ community answers<br>
+            <span style="color:var(--g);font-family:var(--f3);font-size:9px;">~$20–30/mo · claude-opus-4-6</span>
+          </div>
+        </div>
+        <div style="background:rgba(56,189,248,.05);border:1px solid rgba(56,189,248,.2);border-radius:7px;padding:12px;">
+          <div style="font-family:var(--f1);font-size:16px;color:var(--sky);margin-bottom:6px;">GPT-4o API · Coder</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.8;">
+            ✅ Smart contracts (Solidity)<br>
+            ✅ TMA frontend (React)<br>
+            ✅ n8n custom code nodes<br>
+            ✅ Pinata upload scripts<br>
+            ✅ Draft Simulator logic<br>
+            ✅ Anti-Sybil algorithms<br>
+            <span style="color:var(--sky);font-family:var(--f3);font-size:9px;">~$15–25/mo · gpt-4o</span>
+          </div>
+        </div>
+        <div style="background:rgba(245,200,66,.05);border:1px solid rgba(245,200,66,.2);border-radius:7px;padding:12px;">
+          <div style="font-family:var(--f1);font-size:16px;color:var(--gold);margin-bottom:6px;">PERPLEXITY API · Mắt Internet</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.8;">
+            ✅ Tin tức bóng đá realtime<br>
+            ✅ Daily Quiz content (AQ)<br>
+            ✅ Verify thông tin PIQUE<br>
+            ✅ Research KOL trước deal<br>
+            ✅ Monitor competitor news<br>
+            ✅ Player injury updates<br>
+            <span style="color:var(--gold);font-family:var(--f3);font-size:9px;">~$5–10/mo · llama-3.1-sonar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </details>
+
+  <!-- OPENCLAW + LLM SETUP -->
+  <details>
+    <summary>🔧 Setup OpenClaw + 3 LLMs — Hướng dẫn từng bước cho từng Agent</summary>
+    <div class="db">
+
+      <div class="box tip mb12">
+        <div class="bt">Thứ tự setup bắt buộc</div>
+        <p><strong>Bước 0:</strong> Có API keys trước → <strong>Bước 1:</strong> Cài OpenClaw lên VPS1 → <strong>Bước 2:</strong> Add 3 LLM connections → <strong>Bước 3:</strong> Tạo từng agent theo thứ tự PS → AQ → ADS → AJ → AMF → AS → AD</p>
+      </div>
+
+      <!-- Bước 0: API Keys -->
+      <div class="wf gold mb12">
+        <div class="wf-t">🔑 BƯỚC 0 — Chuẩn bị API Keys (30 phút)</div>
+        <div class="tw mt8"><table>
+          <thead><tr><th>API Key</th><th>Lấy ở đâu</th><th>Format</th><th>Lưu vào</th></tr></thead>
+          <tbody>
+            <tr><td>Claude API Key</td><td>console.anthropic.com → API Keys → Create Key</td><td class="mono" style="font-size:10px;">sk-ant-api03-...</td><td rowspan="4" style="vertical-align:middle;"><code style="font-size:10px;">/home/openclaw/.env</code><br><br>Không commit lên GitHub</td></tr>
+            <tr class="thl"><td>OpenAI API Key</td><td>platform.openai.com → API Keys → Create new</td><td class="mono" style="font-size:10px;">sk-proj-...</td></tr>
+            <tr><td>Perplexity API Key</td><td>perplexity.ai/settings/api → Generate</td><td class="mono" style="font-size:10px;">pplx-...</td></tr>
+            <tr class="thl"><td>OpenClaw License</td><td>openclaw.ai → Dashboard → License Key</td><td class="mono" style="font-size:10px;">oc-pro-...</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- Bước 1: Cài OpenClaw -->
+      <div class="wf mb12">
+        <div class="wf-t">⚙️ BƯỚC 1 — Cài OpenClaw lên VPS1 (1 giờ)</div>
+        <div class="steps">
+          <div class="step"><div class="sn">1.1</div><div class="st">SSH vào VPS1</div><div class="sd"><code style="font-size:10px;">ssh <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe8c91918abe888e8dcfd0899dccc890988ad097909891">[email&#160;protected]</a></code></div></div>
+          <div class="step"><div class="sn">1.2</div><div class="st">Download OpenClaw</div><div class="sd"><code style="font-size:10px;">curl -fsSL https://openclaw.ai/install.sh | bash</code></div></div>
+          <div class="step"><div class="sn">1.3</div><div class="st">Config .env</div><div class="sd">Paste API keys vào <code>/home/openclaw/.env</code></div></div>
+          <div class="step"><div class="sn">1.4</div><div class="st">Start với PM2</div><div class="sd"><code style="font-size:10px;">pm2 start openclaw --port 3000</code></div></div>
+          <div class="step"><div class="sn">1.5</div><div class="st">Nginx proxy</div><div class="sd">Route <code>openclaw.wc26nft.info</code> → <code>localhost:3000</code></div></div>
+        </div>
+      </div>
+
+      <!-- Bước 2: Add LLM Connections -->
+      <div class="wf sky mb12">
+        <div class="wf-t">🔌 BƯỚC 2 — Kết nối 3 LLMs vào OpenClaw (30 phút)</div>
+        <div class="tw mt8"><table>
+          <thead><tr><th>LLM</th><th>Trong OpenClaw UI</th><th>Model chọn</th><th>Test prompt</th></tr></thead>
+          <tbody>
+            <tr><td><strong class="tg">Claude API</strong></td><td>Settings → LLM Connections → Add → Anthropic → paste <code>sk-ant-...</code></td><td class="mono" style="font-size:10px;">claude-opus-4-6</td><td>"Viết 1 câu chào bằng tiếng Việt"</td></tr>
+            <tr class="thl"><td><strong class="ts">GPT-4o API</strong></td><td>Settings → LLM Connections → Add → OpenAI → paste <code>sk-proj-...</code></td><td class="mono" style="font-size:10px;">gpt-4o</td><td>"Write a hello world in Solidity"</td></tr>
+            <tr><td><strong class="tgo">Perplexity API</strong></td><td>Settings → LLM Connections → Add → Perplexity → paste <code>pplx-...</code></td><td class="mono" style="font-size:10px;">llama-3.1-sonar-large</td><td>"Latest football news today"</td></tr>
+          </tbody>
+        </table></div>
+        <div class="wf-note">Mỗi connection test xong sẽ hiện ✅ Connected. Nếu fail → kiểm tra API key có đủ credit không.</div>
+      </div>
+
+      <!-- Bước 3: 8 Agents -->
+      <div class="lbl mt12 mb8" style="font-size:10px;letter-spacing:2px;">BƯỚC 3 — TẠO 8 AGENTS THEO THỨ TỰ</div>
+
+      <!-- Agent PS -->
+      <div class="wf mb8">
+        <div class="wf-t">🌍 AGENT 1 — PIQUE Scout (PS) · LLM: Claude API</div>
+        <div class="tw mt8"><table>
+          <tbody>
+            <tr><td style="width:140px;"><strong>Mục đích</strong></td><td>Tin nhắn cá nhân hóa theo quốc gia + predictions bóng đá 5 ngôn ngữ</td></tr>
+            <tr class="thl"><td><strong>LLM</strong></td><td><span class="b bg">Claude API</span> — claude-opus-4-6</td></tr>
+            <tr><td><strong>Tools gán</strong></td><td>API-Football (read) · Supabase (write predictions) · Telegram Bot (send message)</td></tr>
+            <tr class="thl"><td><strong>Schedule</strong></td><td>07:30 UTC mỗi ngày + event-triggered sau mỗi match kết thúc</td></tr>
+            <tr><td><strong>System Prompt</strong></td><td style="font-family:var(--f3);font-size:10px;color:var(--muted);">
+              "You are PIQUE — the AI Football Oracle of WC26 NFT Fantasy. Your role: deliver personalized football predictions in the user's language and style.<br><br>
+              Rules:<br>
+              - Always use the user's native language (detect from their country field in Supabase)<br>
+              - Tone: confident, humorous, use football emojis ⚽🔥<br>
+              - Format: 3 sentences max. Prediction + confidence % + 1 fun fact<br>
+              - Never fabricate stats — only use data provided by API-Football tool<br>
+              - For Vietnamese users: use casual Southern Vietnamese tone (không dùng 'quý vị')"
+            </td></tr>
+            <tr class="thl"><td><strong>Input</strong></td><td>API-Football data (fixtures, form, H2H) + user country from Supabase</td></tr>
+            <tr><td><strong>Output</strong></td><td>5 language posts → TG channels + individual DMs for high-engagement users</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- Agent AQ -->
+      <div class="wf sky mb8">
+        <div class="wf-t">❓ AGENT 2 — AI Daily Quiz (AQ) · LLM: Perplexity + Claude</div>
+        <div class="tw mt8"><table>
+          <tbody>
+            <tr><td style="width:140px;"><strong>Mục đích</strong></td><td>5 câu quiz bóng đá mỗi ngày từ tin tức thực tế → tăng DAU</td></tr>
+            <tr class="thl"><td><strong>LLM</strong></td><td><span class="b bgo">Perplexity API</span> fetch news → <span class="b bg">Claude API</span> format thành quiz</td></tr>
+            <tr><td><strong>Tools</strong></td><td>Perplexity (web search realtime) · Claude (format + translate) · Telegram sendPoll</td></tr>
+            <tr class="thl"><td><strong>Schedule</strong></td><td>08:15 UTC mỗi ngày</td></tr>
+            <tr><td><strong>System Prompt Claude</strong></td><td style="font-family:var(--f3);font-size:10px;color:var(--muted);">
+              "Given these football news headlines: [Perplexity output], create 5 multiple-choice quiz questions.<br><br>
+              Rules:<br>
+              - 4 questions from real news, 1 question about WC26 game mechanics<br>
+              - Each question: 4 options (A/B/C/D), 1 correct answer<br>
+              - Difficulty: mix easy (60%) and medium (40%)<br>
+              - Output: JSON array only, no markdown<br>
+              - Translate each question into: EN, PT, ES, FR, VI"
+            </td></tr>
+            <tr class="thl"><td><strong>Output</strong></td><td>5 Telegram polls (1 per language channel) · Answer reveal after 2h</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- Agent ADS -->
+      <div class="wf gold mb8">
+        <div class="wf-t">⚽ AGENT 3 — Draft Simulator (ADS) · LLM: Claude + GPT-4o</div>
+        <div class="tw mt8"><table>
+          <tbody>
+            <tr><td style="width:140px;"><strong>Mục đích</strong></td><td>Phân tích đội hình Squad Fantasy, tính điểm dự kiến, đề xuất swap tối ưu</td></tr>
+            <tr class="thl"><td><strong>LLM</strong></td><td><span class="b bg">Claude API</span> analysis + reasoning · <span class="b bs">GPT-4o</span> scoring algorithm code</td></tr>
+            <tr><td><strong>Tools</strong></td><td>API-Football (player stats, injuries, fixtures) · Supabase (read/write predictions + accuracy tracking)</td></tr>
+            <tr class="thl"><td><strong>Schedule</strong></td><td>On-demand (user trigger /analyze) + 09:00 UTC daily top lineup post</td></tr>
+            <tr><td><strong>System Prompt Claude</strong></td><td style="font-family:var(--f3);font-size:10px;color:var(--muted);">
+              "You are WC26's Squad Fantasy analyst. Given a user's lineup and API-Football data:<br><br>
+              1. Calculate expected points based on: form (40%), upcoming fixture difficulty (30%), injuries (20%), H2H (10%)<br>
+              2. Identify the weakest player in their lineup<br>
+              3. Suggest exactly 1 swap with reasoning<br>
+              4. Reply in user's language. Max 4 sentences.<br>
+              5. Always end with a confidence rating: 🔥🔥🔥 (high) / 🔥🔥 (medium) / 🔥 (low)"
+            </td></tr>
+            <tr class="thl"><td><strong>Accuracy tracking</strong></td><td>GPT-4o viết script: lưu prediction → sau match so sánh vs actual → tính 7-day accuracy % → hiển thị trên PIQUE profile</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- Agent AJ -->
+      <div class="wf orng mb8">
+        <div class="wf-t">🎙️ AGENT 4 — AI Judge (AJ) · LLM: Claude API</div>
+        <div class="tw mt8"><table>
+          <tbody>
+            <tr><td style="width:140px;"><strong>Mục đích</strong></td><td>Bình luận hài hước kết quả match + Global Jury → tăng share rate</td></tr>
+            <tr class="thl"><td><strong>LLM</strong></td><td><span class="b bg">Claude API</span> — giỏi nhất về humor + cultural context đa ngôn ngữ</td></tr>
+            <tr><td><strong>Tools</strong></td><td>API-Football (match results, goals, cards) · Telegram (post to channels)</td></tr>
+            <tr class="thl"><td><strong>Schedule</strong></td><td>Event-triggered: 5 phút sau khi match kết thúc (API-Football webhook)</td></tr>
+            <tr><td><strong>System Prompt</strong></td><td style="font-family:var(--f3);font-size:10px;color:var(--muted);">
+              "You are WC26's match commentator. Write a funny, shareable post about this match result.<br><br>
+              Style: like a passionate fan, not a journalist. Use local football culture references.<br>
+              - For Brazil matches: reference Samba, Neymar drama, pagode vibes<br>
+              - For Mexico matches: reference Grito, passion, CONCACAF pride<br>
+              - For upsets: be shocked, use capslock sparingly, 1-2 crying emojis max<br>
+              Max 3 sentences. End with a question to drive comments. Write in target language."
+            </td></tr>
+            <tr class="thl"><td><strong>Output</strong></td><td>Post vào channel + tag @WC26Global. Target: 5%+ share rate per post</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- Agent AMF -->
+      <div class="wf rose mb8">
+        <div class="wf-t">🎨 AGENT 5 — Meme Factory (AMF) · LLM: Claude API + Midjourney</div>
+        <div class="tw mt8"><table>
+          <tbody>
+            <tr><td style="width:140px;"><strong>Mục đích</strong></td><td>Auto-gen meme template từ kết quả match → viral content</td></tr>
+            <tr class="thl"><td><strong>LLM</strong></td><td><span class="b bg">Claude API</span> — viết caption + chọn template · Midjourney — gen ảnh nền</td></tr>
+            <tr><td><strong>Tools</strong></td><td>Claude (caption + template selection) · Midjourney API (image gen) · Telegram (post)</td></tr>
+            <tr class="thl"><td><strong>Schedule</strong></td><td>Event-triggered sau match kết thúc (chạy cùng lúc với AJ, khác output)</td></tr>
+            <tr><td><strong>System Prompt Claude</strong></td><td style="font-family:var(--f3);font-size:10px;color:var(--muted);">
+              "Given this match result, write a meme caption (max 8 words) and select the best template from: [upset_face, celebration, crying_fan, shocked_goalkeeper, trophy_lift, red_card_drama].<br><br>
+              Output JSON: {template: '...', caption_top: '...', caption_bottom: '...', language: '...'}<br>
+              Make it punchy, shareable, slightly provocative but never offensive."
+            </td></tr>
+            <tr class="thl"><td><strong>Note</strong></td><td>Pre-gen 20 base meme templates với Midjourney trước. AMF chỉ thêm text overlay bằng Canvas API — không gen ảnh mỗi lần (tiết kiệm chi phí).</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- Agent AS -->
+      <div class="wf vio mb8">
+        <div class="wf-t">🛡️ AGENT 6 — Anti-Sybil (AS) · LLM: GPT-4o (Code) — chạy trong n8n</div>
+        <div class="tw mt8"><table>
+          <tbody>
+            <tr><td style="width:140px;"><strong>Mục đích</strong></td><td>Phát hiện bot farms, gian lận referral, fake accounts trước khi airdrop</td></tr>
+            <tr class="thl"><td><strong>LLM</strong></td><td><span class="b bs">GPT-4o API</span> — viết DBSCAN clustering code · Chạy logic trong n8n Code node (không phải OpenClaw agent thực sự)</td></tr>
+            <tr><td><strong>Tools</strong></td><td>n8n Code node (DBSCAN JavaScript) · WalletGuard API · Supabase (read users, write sybil_flags)</td></tr>
+            <tr class="thl"><td><strong>Schedule</strong></td><td>Realtime: mỗi airdrop action + Batch sweep 00:00 UTC mỗi ngày</td></tr>
+            <tr><td><strong>GPT-4o viết code cho:</strong></td><td style="font-family:var(--f3);font-size:10px;color:var(--muted);">
+              Prompt: "Write a JavaScript function for n8n Code node that:<br>
+              1. Takes array of user objects {ip_hash, telegram_id, referrer_id, join_timestamp}<br>
+              2. Runs DBSCAN clustering (epsilon=0.5, minPts=5) to find suspicious clusters<br>
+              3. Flags accounts where: same IP &gt;3 accounts, referral chain circular, account age &lt;7 days<br>
+              4. Returns {flagged: [], clean: [], clusters: []}"
+            </td></tr>
+            <tr class="thl"><td><strong>Action khi flag</strong></td><td>Freeze points tạm thời → gửi TG approval request → bạn Approve ban / Reject unfreeze</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- Agent APJR -->
+      <div class="wf mb8">
+        <div class="wf-t">📸 AGENT 7 — Personal Journey Report (APJR) · LLM: Claude API</div>
+        <div class="tw mt8"><table>
+          <tbody>
+            <tr><td style="width:140px;"><strong>Mục đích</strong></td><td>Infographic cá nhân hóa 100 ngày hành trình của mỗi user. Capacity: 10M ảnh.</td></tr>
+            <tr class="thl"><td><strong>LLM</strong></td><td><span class="b bg">Claude API</span> — tổng hợp data + viết narrative cá nhân hóa</td></tr>
+            <tr><td><strong>Tools</strong></td><td>Supabase (read user journey data) · Claude (narrative text) · Canvas API (generate infographic) · Pinata (store result)</td></tr>
+            <tr class="thl"><td><strong>Schedule</strong></td><td>Phase 4 (ngày 91–100): batch gen cho toàn bộ eligible users. Trigger: Airdrop snapshot confirmed.</td></tr>
+            <tr><td><strong>System Prompt</strong></td><td style="font-family:var(--f3);font-size:10px;color:var(--muted);">
+              "Given this user's 100-day WC26 journey data, write a personalized 2-sentence narrative in their language.<br><br>
+              Data includes: total points, actions completed, referrals, countries cheered for, predictions accuracy, badges earned.<br>
+              Tone: celebratory, proud, make them feel like a pioneer.<br>
+              End with their unique title: 'The Origin Vanguard' / 'The Pathfinder' / 'Guardian' based on their seed tier."
+            </td></tr>
+            <tr class="thl"><td><strong>Scale</strong></td><td>Batch processing: 10,000 reports/hour. Total 10M = ~41 ngày nếu chạy 24/7. Thực tế chạy 1 tuần intensive = OK.</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- Agent AD -->
+      <div class="wf sky mb8">
+        <div class="wf-t">📊 AGENT 8 — AI Dashboard (AD) · LLM: Claude API · QUAN TRỌNG NHẤT</div>
+        <div class="tw mt8"><table>
+          <tbody>
+            <tr><td style="width:140px;"><strong>Mục đích</strong></td><td>Compile KPI hàng ngày + gửi báo cáo sáng + trigger approval requests + monitor tất cả agents khác</td></tr>
+            <tr class="thl"><td><strong>LLM</strong></td><td><span class="b bg">Claude API</span> — tóm tắt tiếng Việt, đưa ra recommendations, format approve requests</td></tr>
+            <tr><td><strong>Tools</strong></td><td>Supabase (read all KPIs) · n8n (trigger workflows) · Telegram (send to bạn) · Notion (log daily)</td></tr>
+            <tr class="thl"><td><strong>Schedule</strong></td><td>07:45 UTC compile → 08:00 UTC gửi. Alert ngay khi K-factor &lt;0.8 hoặc service down.</td></tr>
+            <tr><td><strong>System Prompt</strong></td><td style="font-family:var(--f3);font-size:10px;color:var(--muted);">
+              "Bạn là AI Dashboard của WC26 NFT Fantasy. Nhiệm vụ: viết báo cáo sáng hàng ngày bằng tiếng Việt, ngắn gọn, dễ đọc trên điện thoại.<br><br>
+              Format bắt buộc:<br>
+              📈 NGÀY [N]/100 · [date]<br>
+              👥 Users: [total] (+[delta]) · K: [k_factor]<br>
+              💬 Community: [tg_members] · D7: [retention]%<br>
+              🤖 AI: [predictions_posted] predictions · [accuracy]% accuracy<br>
+              🎁 Airdrop: [points]M pts · [wallets]K wallets<br>
+              💰 Cost: $[ai_cost_today] hôm nay<br>
+              ⚠️ Pending: [pending_count] items<br><br>
+              Sau số liệu: viết 1–2 câu nhận xét + 1 action item quan trọng nhất hôm nay.<br>
+              Context: Target 10M users trước 11/6/2026. Hôm nay là ngày [N]/100."
+            </td></tr>
+            <tr class="thl"><td><strong>Monitor agents khác</strong></td><td>AD kiểm tra output của 7 agents còn lại: nếu agent nào không post đúng schedule → tự trigger lại → nếu fail 3 lần → TG alert cho bạn</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <div class="box tip mt8">
+        <div class="bt">✅ Kiểm tra sau khi setup xong</div>
+        <ul>
+          <li>Tất cả 8 agents hiện ✅ Active trong OpenClaw dashboard</li>
+          <li>Test thủ công Agent PS: trigger 1 prediction → kiểm tra TG channel nhận được chưa</li>
+          <li>Test Agent AD: chạy thủ công → kiểm tra TG cá nhân của bạn nhận báo cáo chưa</li>
+          <li>Kiểm tra Notion AI Army Log có được ghi tự động không</li>
+          <li>Chờ 08:00 UTC ngày hôm sau → nhận daily report đầu tiên ✉️</li>
+        </ul>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- SETUP COST (Workflows) -->
+  <details open>
+    <summary>⚙️ Setup Cost — n8n Workflows, AI Army Configuration (One-time Labor)</summary>
+    <div class="db">
+    <div class="tw">
+    <table>
+      <thead><tr><th>Setup Item</th><th>Description</th><th>Cost</th><th>Labor <span style="font-weight:400;font-size:10px;">(hrs × $20/h)</span></th><th>Total Cost+Labor</th><th>Deadline</th><th>Note — Làm gì</th></tr></thead>
+      <tbody>
+        <tr class="tsg"><td colspan="7">SETUP COST (ONE-TIME)</td></tr>
+        <tr><td>n8n self-hosted setup</td><td class="mono" style="font-size:11px;">Deploy + configure credentials</td><td class="g">$0</td><td class="mu">$160 <span style="font-size:10px;">(8h)</span></td><td class="tg"><strong>$160</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">Cài n8n trên VPS1, add credentials (TG, Claude, Supabase, Notion, OpenClaw), test connections</td></tr>
+        <tr class="thl"><td>OpenClaw Agent Config</td><td class="mono" style="font-size:11px;">Create + test 8 AI agents</td><td class="g">$0</td><td class="mu">$80 <span style="font-size:10px;">(4h)</span></td><td class="tg"><strong>$80</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">Tạo agents PS, AQ, ADS, AJ, AMF, APJR, AS, AD trong OpenClaw. Configure tools + schedules.</td></tr>
+        <tr><td>Flow 1 — Daily Report</td><td class="mono" style="font-size:11px;">Cron 08:00 → Supabase → Claude → TG</td><td class="g">$0</td><td class="mu">$80 <span style="font-size:10px;">(4h)</span></td><td class="tg"><strong>$80</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">Báo cáo sáng tự động: pull stats từ DB → Claude tóm tắt tiếng Việt → gửi TG kèm inline buttons</td></tr>
+        <tr class="thl"><td>Flow 2 — Approve Flow</td><td class="mono" style="font-size:11px;">TG inline keyboard + n8n wait node</td><td class="g">$0</td><td class="mu">$100 <span style="font-size:10px;">(5h)</span></td><td class="tg"><strong>$100</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">Approval requests (KOL deals, budget, ban user) → TG buttons Approve/Reject → n8n execute + log Notion</td></tr>
+        <tr><td>Flow 3 — Content Pipeline</td><td class="mono" style="font-size:11px;">Daily 5-language auto-post</td><td class="g">$0</td><td class="mu">$120 <span style="font-size:10px;">(6h)</span></td><td class="tg"><strong>$120</strong></td><td><span class="b bs">T3/2026</span></td><td style="font-size:11px;">07:00 UTC: API-Football → Claude (EN/PT/ES/FR/AR versions) → schedule TG posts 08:00 + social</td></tr>
+        <tr class="thl"><td>Flow 4 — Airdrop Points Engine</td><td class="mono" style="font-size:11px;">Points tracking + anti-sybil auto</td><td class="g">$0</td><td class="mu">$160 <span style="font-size:10px;">(8h)</span></td><td class="tg"><strong>$160</strong></td><td><span class="b bs">T3/2026</span></td><td style="font-size:11px;">Bot catches user actions → validate → update Supabase → leaderboard realtime → weekly TG digest</td></tr>
+        <tr><td>Flow 5 — Contract Monitor</td><td class="mono" style="font-size:11px;">BetterUptime → n8n → TG alert</td><td class="g">$0</td><td class="mu">$60 <span style="font-size:10px;">(3h)</span></td><td class="tg"><strong>$60</strong></td><td><span class="b bgo">T4/2026</span></td><td style="font-size:11px;">24/7 monitor RPC + TMA + Bot. Auto-retry 3×. Critical alert bypass daily digest. Auto-switch backup RPC.</td></tr>
+        <tr class="thl"><td>Flow 6 — Investor CRM</td><td class="mono" style="font-size:11px;">Form → Notion CRM auto-populate</td><td class="g">$0</td><td class="mu">$80 <span style="font-size:10px;">(4h)</span></td><td class="tg"><strong>$80</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">Landing page form → n8n → Notion Investor DB → Claude personalized email → 3-day drip sequence</td></tr>
+        <tr><td>Flow 7 — Stadium NFT Auction Alert</td><td class="mono" style="font-size:11px;">Bid events → TG notify bạn</td><td class="g">$0</td><td class="mu">$60 <span style="font-size:10px;">(3h)</span></td><td class="tg"><strong>$60</strong></td><td><span class="b bgo">T3/2026</span></td><td style="font-size:11px;">Watch auction contract events → new bid → TG notify founder real-time. Hết 10 phút = soft-close trigger.</td></tr>
+        <tr class="thl"><td>Notion Command Center Setup</td><td class="mono" style="font-size:11px;">6 databases + automations</td><td class="g">$0</td><td class="mu">$120 <span style="font-size:10px;">(6h)</span></td><td class="tg"><strong>$120</strong></td><td><span class="b bg">T2/2026</span></td><td style="font-size:11px;">Build 6 Notion DBs: Timeline, Finance, AI Log, Marketing, CRM, Contract Registry. n8n integrations.</td></tr>
+        <tr class="ttot"><td colspan="2"><strong>SUBTOTAL SETUP COST</strong></td><td><strong>$0</strong></td><td><strong>$1,020</strong></td><td><strong class="tg">$1,020</strong></td><td colspan="2"><strong>Toàn bộ là labor cost. Công cụ đều free / đã có subscription.</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="box note mt8"><div class="bt">💡 Ghi chú về Labor Rate</div><p>Labor rate $20/h = ước tính conservative cho founder time. Nếu thuê freelancer: n8n specialist ~$25–40/h, nhưng với hướng dẫn AI + Codex, founder có thể tự setup được phần lớn. Tổng $1,020 labor = <strong>~51 giờ work</strong> để setup toàn bộ AI Army.</p></div>
+    </div>
+  </details>
+
+  <!-- LEGAL + MARKETING -->
+  <details open>
+    <summary>⚖️ Legal, Social Media Services, Marketing</summary>
+    <div class="db">
+    <div class="tw">
+    <table>
+      <thead><tr><th>Item</th><th>Vendor</th><th>Cost</th><th>Labor</th><th>Total Cost+Labor</th><th>Deadline</th><th>Note — Làm gì / Tại sao cần</th></tr></thead>
+      <tbody>
+        <tr class="tsg"><td colspan="7">LEGAL & COMPLIANCE</td></tr>
+        <tr class="thl"><td>SAFT legal review (one-time T2) <span class="b br">BẮT BUỘC</span></td><td>Crypto Lawyer</td><td class="go">$500–$2,000</td><td class="mu">—</td><td class="tg"><strong>$500–$2,000</strong></td><td><span class="b br">T2/2026</span></td><td style="font-size:11px;">Simple Agreement for Future Tokens. Bảo vệ pháp lý khi nhận Seed. Không gọi vốn khi chưa có SAFT.</td></tr>
+        <tr><td>ToS + Privacy Policy (one-time)</td><td>Claude + Lawyer</td><td class="go">$200</td><td class="mu">—</td><td class="tg"><strong>$200</strong></td><td><span class="b br">T2/2026</span></td><td style="font-size:11px;">Claude draft → Lawyer spot-check. Bắt buộc cho landing page + TMA launch.</td></tr>
+        <tr class="thl"><td>Token Legal Opinion Letter <span class="b br">BẮT BUỘC</span></td><td>Crypto law firm</td><td class="go">$2,000–$5,000</td><td class="mu">—</td><td class="tg"><strong>$2,000–$5,000</strong></td><td><span class="b bgo">T5/2026</span></td><td style="font-size:11px;">Confirm WC26 = utility token, không phải security. Bắt buộc trước Community Sale. Non-negotiable.</td></tr>
+        <tr><td>KYC/AML Policy (Community Sale)</td><td>Claude + Lawyer</td><td class="go">$500–$1,000</td><td class="mu">—</td><td class="tg"><strong>$500–$1,000</strong></td><td><span class="b bgo">T5/2026</span></td><td style="font-size:11px;">Xác định jurisdictions bị exclude (US, CN). Disclosure draft. Lawyer review 1 lần.</td></tr>
+        <tr class="thl"><td>Smart Contract Audit Bundle (5 contracts) <span class="b br">CRITICAL</span></td><td>Hacken / CertiK</td><td class="go">$10,000–$20,000</td><td class="mu">$120 <span style="font-size:10px;">(review mgmt)</span></td><td class="tg"><strong>$10,120–$20,120</strong></td><td><span class="b bgo">T5/2026</span></td><td style="font-size:11px;">Audit 5 contracts: Token, Sale, Oracle, Squad Fantasy, Airdrop Distributor. Hacken bundle ~$10–15K.</td></tr>
+        <tr class="tsg"><td colspan="7">SOCIAL MEDIA & MARKETING</td></tr>
+        <tr><td>Telegram Ads</td><td class="mono" style="font-size:11px;">ads.telegram.org</td><td class="go">$5,000–$8,000</td><td class="mu">$300 <span style="font-size:10px;">(manage)</span></td><td class="tg"><strong>$5,300–$8,300</strong></td><td><span class="b bs">T3–T5</span></td><td style="font-size:11px;">T3: $1K (airdrop launch) · T4: $2K (TMA) · T5: $2K (CS launch). Target: crypto + football channels. CPM ~$4.</td></tr>
+        <tr class="thl"><td>Twitter (X) Ad</td><td class="mono" style="font-size:11px;">Twitter Ads Manager</td><td class="go">$2,000–$3,000</td><td class="mu">$150</td><td class="tg"><strong>$2,150–$3,150</strong></td><td><span class="b bs">T3–T5</span></td><td style="font-size:11px;">Promote key milestone threads. T3: audit done, T4: TMA launch, T5: CS open. CPC ~$1–2 crypto audience.</td></tr>
+        <tr><td>KOL Campaigns (3–5 KOLs)</td><td class="mono" style="font-size:11px;">ChainPeak.pro / Lever.io</td><td class="go">$3,000–$8,000</td><td class="mu">$300</td><td class="tg"><strong>$3,300–$8,300</strong></td><td><span class="b bs">T3–T5</span></td><td style="font-size:11px;">Mix: Token deal + cash. Focus: Brazil, Mexico, Nigeria, Vietnam crypto. 50K–300K followers each.</td></tr>
+        <tr class="thl"><td>PR Articles (CoinTelegraph, Decrypt)</td><td class="mono" style="font-size:11px;">CT: ~$3–5K · Decrypt: ~$2K</td><td class="go">$4,000–$8,000</td><td class="mu">$200</td><td class="tg"><strong>$4,200–$8,200</strong></td><td><span class="b bgo">T4–T5</span></td><td style="font-size:11px;">2 articles trước Community Sale. Build credibility với retail buyers. Claude draft content.</td></tr>
+        <tr><td>Galxe / Zealy Quest Campaign</td><td class="mono" style="font-size:11px;">Galxe.com</td><td class="go">$1,000–$1,500</td><td class="mu">$100</td><td class="tg"><strong>$1,100–$1,600</strong></td><td><span class="b bgo">T4/2026</span></td><td style="font-size:11px;">10 quests, target 50K participants. Platform fee + WC26 token rewards. 10M+ Galxe user base.</td></tr>
+        <tr class="thl"><td>AMA Sessions (3 sessions, TG 50K+)</td><td class="mono" style="font-size:11px;">$1–2K/session</td><td class="go">$3,000–$6,000</td><td class="mu">$150</td><td class="tg"><strong>$3,150–$6,150</strong></td><td><span class="b bgo">T4–T5</span></td><td style="font-size:11px;">3 AMAs on channels 50K+ members. Claude prep 50 Q&A answers. Build community trust pre-CS.</td></tr>
+        <tr><td>Stadium NFT Artwork (16 pieces)</td><td class="mono" style="font-size:11px;">Midjourney draft → Fiverr finalize</td><td class="go">$1,600–$3,200</td><td class="mu">$90</td><td class="tg"><strong>$1,690–$3,290</strong></td><td><span class="b bs">T3/2026</span></td><td style="font-size:11px;">~$100–200/piece × 16 venues. 1-of-1. Midjourney generates draft, artist on Fiverr finalizes.</td></tr>
+        <tr class="ttot"><td colspan="2"><strong>SUBTOTAL LEGAL + MARKETING</strong></td><td><strong>$32,800–$65,700</strong></td><td><strong>$1,410</strong></td><td><strong class="tg">$34,210–$67,110</strong></td><td colspan="2"><strong>Audit $10–20K là chi phí lớn nhất · Marketing funded từ Community Sale proceeds</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+  </details>
+
+  <!-- GRAND TOTAL INFRA -->
+  <div class="total-bar mt12">
+    <div><div class="label">SYSTEM SETUP</div><div class="value ts">$1,600–$1,968</div></div>
+    <div><div class="label">AI TOOLS (6–12 months)</div><div class="value tg">$1,796</div></div>
+    <div><div class="label">SETUP LABOR (workflows)</div><div class="value tgo">$1,020</div></div>
+    <div><div class="label">LEGAL + MARKETING</div><div class="value to">$34,210–$67,110</div></div>
+    <div style="border-left:2px solid var(--gold);padding-left:14px;"><div class="label">TOTAL INFRASTRUCTURE</div><div style="font-family:var(--f1);font-size:28px;color:var(--gold);">$38,222–$71,312</div></div>
+  </div>
+
+  <div class="box warn mt12">
+    <div class="bt">⚠️ Chi phí lớn nhất cần lưu ý</div>
+    <ul>
+      <li><strong>Smart Contract Audit: $10,000–$20,000</strong> — Bắt buộc T5/2026. Funded từ Seed R3 ($5,500 legal) + Community Sale proceeds. Không thể skip.</li>
+      <li><strong>Marketing (TG Ads + KOL + PR): $12–25K</strong> — Funded từ Community Sale 30% = $56,550 marketing budget. Không cần Seed cho phần này.</li>
+      <li><strong>AI Tools + System: ~$3,012</strong> — Chi phí thấp, chạy suốt 6–12 tháng. Founder tự trả từ Seed R1.</li>
+      <li><strong>Setup Labor: $1,020</strong> — 51 giờ founder time. Nếu tự làm = không tốn tiền, chỉ tốn thời gian.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════ 02 TOKENOMICS -->
+<section id="tokenomics">
+  <div class="lbl">02 — Tokenomics</div>
+  <div class="sec-h"><span class="tv">■</span> TOKENOMICS — 200,000,000 WC26 · POLYGON · FIXED</div>
+  <div class="sec-bar"></div>
+
+  <div class="tw mb12">
+  <table>
+    <thead><tr><th>#</th><th>Hạng mục</th><th>%</th><th>Tokens</th><th>Giá / Token</th><th>Giá trị ($)</th><th>Vesting / Ghi chú</th></tr></thead>
+    <tbody>
+      <tr class="tsg"><td colspan="7">FUNDRAISING ALLOCATION</td></tr>
+      <tr><td>1</td><td><strong>Presale (SEED)</strong></td><td>10%</td><td>20,000,000</td><td class="go">$0.00375 avg</td><td class="go"><strong>$75,000</strong></td><td>Funding initial stage</td></tr>
+      <tr class="thl"><td>1.1</td><td>&nbsp;&nbsp;└ Round 1 — Vanguard 1 "The Origin"</td><td>5%</td><td>10,000,000</td><td class="go">$0.0025</td><td class="go">$25,000</td><td>10 packs × 1M WC26 × $2,500/pack · 20% (90d cliff, 240d linear)</td></tr>
+      <tr><td>1.2</td><td>&nbsp;&nbsp;└ Round 2 — Vanguard 2 "The Pathfinders"</td><td>2.5%</td><td>5,000,000</td><td class="go">$0.0045</td><td class="go">$22,500</td><td>25 packs × 200K WC26 × $900/pack · 20% (90d cliff, 240d linear)</td></tr>
+      <tr class="thl"><td>1.3</td><td>&nbsp;&nbsp;└ Round 3 — Vanguard 3 "The Guardians"</td><td>2.5%</td><td>5,000,000</td><td class="go">$0.0055</td><td class="go">$27,500</td><td>50 packs × 100K WC26 × $550/pack · 20% (90d cliff, 240d linear)</td></tr>
+      <tr><td>2</td><td><strong>Community Sale</strong></td><td>14.5%</td><td>29,000,000</td><td class="go">$0.0065</td><td class="go"><strong>$188,500</strong></td><td>10% (30d cliff, 240d linear vesting)</td></tr>
+      <tr class="tsg"><td colspan="7">GAME REWARDS</td></tr>
+      <tr><td>3</td><td><strong>Game Rewards Pool</strong></td><td>30%</td><td>60,000,000</td><td class="mu">—</td><td class="mu">—</td><td>Dynamic emission, match-based</td></tr>
+      <tr class="thl"><td>3.1</td><td>&nbsp;&nbsp;└ WorldCup 2026</td><td>7.5%</td><td>15,000,000</td><td>—</td><td>—</td><td>Squad Fantasy, Oracle Challenge emission</td></tr>
+      <tr><td>3.2</td><td>&nbsp;&nbsp;└ Copa America 2027</td><td>5%</td><td>10,000,000</td><td>—</td><td>—</td><td>Event-based emission</td></tr>
+      <tr class="thl"><td>3.3</td><td>&nbsp;&nbsp;└ AFCON 2027</td><td>5%</td><td>10,000,000</td><td>—</td><td>—</td><td>Event-based emission</td></tr>
+      <tr><td>3.4</td><td>&nbsp;&nbsp;└ Asian Cup 2027</td><td>5%</td><td>10,000,000</td><td>—</td><td>—</td><td>Event-based emission</td></tr>
+      <tr class="thl"><td>3.5</td><td>&nbsp;&nbsp;└ EURO 2028</td><td>7.5%</td><td>15,000,000</td><td>—</td><td>—</td><td>Event-based emission</td></tr>
+      <tr class="tsg"><td colspan="7">COMMUNITY & ECOSYSTEM</td></tr>
+      <tr><td>4</td><td><strong>Community & Campaigns</strong></td><td>12.5%</td><td>25,000,000</td><td>—</td><td>—</td><td>Milestone-based unlock</td></tr>
+      <tr class="thl"><td>4.1</td><td>&nbsp;&nbsp;└ Pre-WC Airdrop & Onboarding</td><td>6%</td><td>12,000,000</td><td>—</td><td>—</td><td>20% unlock 1-3 ngày trước Mystery Box · 80% còn lại: 90d linear daily vest (*)</td></tr>
+      <tr><td>4.2</td><td>&nbsp;&nbsp;└ Future Campaigns</td><td>6.5%</td><td>13,000,000</td><td>—</td><td>—</td><td>DAO-controlled</td></tr>
+      <tr class="tsg"><td colspan="7">TEAM, LIQUIDITY, TREASURY</td></tr>
+      <tr><td>5</td><td><strong>Team & Advisors</strong></td><td>12.5%</td><td>25,000,000</td><td>—</td><td>—</td><td>20% (90d cliff, 18-month linear vesting)</td></tr>
+      <tr class="thl"><td>6</td><td><strong>Liquidity Pool</strong></td><td>15%</td><td>30,000,000</td><td>—</td><td>—</td><td>Support DEX/CEX liquidity · DAO-controlled</td></tr>
+      <tr><td>7</td><td><strong>Treasury / DAO Reserve</strong></td><td>5.5%</td><td>11,000,000</td><td>—</td><td>—</td><td>DAO-controlled</td></tr>
+      <tr class="tgrand"><td colspan="2"><strong>TOTAL</strong></td><td><strong>100%</strong></td><td><strong>200,000,000</strong></td><td>—</td><td><strong class="tg">$263,500 (Seed+CS)</strong></td><td>Fixed supply · No inflation · No mint</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box note"><div class="bt">(*) Airdrop Unlock Schedule</div><p>20% của 12M = <strong>2,400,000 WC26</strong> được unlock 1–3 ngày trước Mystery Box Sale để tạo sức mua. 80% còn lại = <strong>9,600,000 WC26</strong> vest tuyến tính 90 ngày sau đó (0.89%/ngày, claim hàng ngày).</p></div>
+</section>
+
+<!-- ════════════════════════ 03 SEED ROUNDS -->
+<section id="seed">
+  <div class="lbl">03 — Seed Rounds</div>
+  <div class="sec-h"><span class="tr">■</span> SEED ROUNDS — R1 → R2 → R3 · TOTAL $75,000</div>
+  <div class="sec-bar"></div>
+
+  <div class="g3 mb12">
+    <!-- R1 -->
+    <div class="card" style="border-top:3px solid var(--rose);">
+      <div class="ct tr">Round 1 · Vanguard 1 "The Origin"</div>
+      <div class="total-bar" style="background:rgba(248,113,113,.06);border-color:rgba(248,113,113,.2);">
+        <div><div class="label">TARGET</div><div class="value tr">$25,000</div></div>
+        <div style="text-align:right;"><div class="label">TOKEN PRICE</div><div style="font-family:var(--f1);font-size:20px;color:var(--rose);">$0.0025</div></div>
+      </div>
+      <div class="tw mb8"><table>
+        <tbody>
+          <tr><td>Pack structure</td><td class="go"><strong>10 packs × 1,000,000 WC26 × $2,500</strong></td></tr>
+          <tr><td>Allocation</td><td class="g">5% · 10,000,000 WC26</td></tr>
+          <tr><td>Vesting</td><td>20% unlock · 90d cliff · 240d linear</td></tr>
+        </tbody>
+      </table></div>
+      <div class="lbl mt8" style="font-size:9px;">FUND ALLOCATION</div>
+      <div class="alloc">
+        <div class="alloc-row"><div class="alloc-lbl tg">Dev Start: Smart Contracts + Airdrop Setup</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:60%;background:var(--g);"></div></div><div class="alloc-val tg">$15,000</div></div>
+        <div class="alloc-row"><div class="alloc-lbl ts">Marketing: Landing Page, Canva, Gamma deck, Social</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:15%;background:var(--sky);"></div></div><div class="alloc-val ts">$3,750</div></div>
+        <div class="alloc-row"><div class="alloc-lbl to">Travel, Meet Up, OPS (VPS $240, Domain $100, Notion $96, Docsend $90)</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:20%;background:var(--orng);"></div></div><div class="alloc-val to">$5,000</div></div>
+        <div class="alloc-row"><div class="alloc-lbl mu">Reserve / Contingency</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:5%;background:var(--muted);"></div></div><div class="alloc-val mu">$1,250</div></div>
+      </div>
+      <div class="lbl mt8">ROI SCENARIOS</div>
+      <div class="tw roi-table"><table><tbody>
+        <tr><td>@ $0.0045 (R2 opens)</td><td class="g">1.8× (1 tuần)</td></tr>
+        <tr><td>@ $0.0065 (Community Sale)</td><td class="g">2.6× (3–4 tháng)</td></tr>
+        <tr><td>@ $0.05 (Conservative)</td><td class="tgo">20×</td></tr>
+        <tr><td>@ $0.10 (Base case)</td><td class="tgo">40×</td></tr>
+        <tr><td>@ $0.30 (Bull)</td><td class="tg">120×</td></tr>
+      </tbody></table></div>
+    </div>
+
+    <!-- R2 -->
+    <div class="card" style="border-top:3px solid var(--orng);">
+      <div class="ct to">Round 2 · Vanguard 2 "The Pathfinders"</div>
+      <div class="total-bar" style="background:rgba(251,146,60,.06);border-color:rgba(251,146,60,.2);">
+        <div><div class="label">TARGET</div><div class="value to">$22,500</div></div>
+        <div style="text-align:right;"><div class="label">TOKEN PRICE</div><div style="font-family:var(--f1);font-size:20px;color:var(--orng);">$0.0045</div></div>
+      </div>
+      <div class="tw mb8"><table><tbody>
+        <tr><td>Pack structure</td><td class="go"><strong>25 packs × 200,000 WC26 × $900</strong></td></tr>
+        <tr><td>Allocation</td><td class="g">2.5% · 5,000,000 WC26</td></tr>
+        <tr><td>Vesting</td><td>20% unlock · 90d cliff · 240d linear</td></tr>
+      </tbody></table></div>
+      <div class="lbl mt8">FUND ALLOCATION</div>
+      <div class="alloc">
+        <div class="alloc-row"><div class="alloc-lbl tg">MVP Dev (Telegram Mini App Core)</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:60%;background:var(--g);"></div></div><div class="alloc-val tg">$13,500</div></div>
+        <div class="alloc-row"><div class="alloc-lbl ts">Social Media Marketing Campaign</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:20%;background:var(--sky);"></div></div><div class="alloc-val ts">$4,500</div></div>
+        <div class="alloc-row"><div class="alloc-lbl to">Travel, Meet Up, OPS</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:15%;background:var(--orng);"></div></div><div class="alloc-val to">$3,375</div></div>
+        <div class="alloc-row"><div class="alloc-lbl mu">Reserve / Contingency</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:5%;background:var(--muted);"></div></div><div class="alloc-val mu">$1,125</div></div>
+      </div>
+      <div class="lbl mt8">ROI SCENARIOS</div>
+      <div class="tw roi-table"><table><tbody>
+        <tr><td>@ $0.0065 (Community)</td><td class="g">1.44× (2–3 tháng)</td></tr>
+        <tr><td>@ $0.05 (Conservative)</td><td class="tgo">11×</td></tr>
+        <tr><td>@ $0.10 (Base)</td><td class="tgo">22×</td></tr>
+        <tr><td>@ $0.30 (Bull)</td><td class="tg">67×</td></tr>
+      </tbody></table></div>
+    </div>
+
+    <!-- R3 -->
+    <div class="card" style="border-top:3px solid var(--gold);">
+      <div class="ct tgo">Round 3 · Vanguard 3 "The Guardians"</div>
+      <div class="total-bar" style="background:rgba(245,200,66,.06);border-color:rgba(245,200,66,.2);">
+        <div><div class="label">TARGET</div><div class="value tgo">$27,500</div></div>
+        <div style="text-align:right;"><div class="label">TOKEN PRICE</div><div style="font-family:var(--f1);font-size:20px;color:var(--gold);">$0.0055</div></div>
+      </div>
+      <div class="tw mb8"><table><tbody>
+        <tr><td>Pack structure</td><td class="go"><strong>50 packs × 100,000 WC26 × $550</strong></td></tr>
+        <tr><td>Allocation</td><td class="g">2.5% · 5,000,000 WC26</td></tr>
+        <tr><td>Vesting</td><td>20% unlock · 90d cliff · 240d linear</td></tr>
+      </tbody></table></div>
+      <div class="lbl mt8">FUND ALLOCATION</div>
+      <div class="alloc">
+        <div class="alloc-row"><div class="alloc-lbl tg">MVP Dev Completed + PIQUE AI</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:45%;background:var(--g);"></div></div><div class="alloc-val tg">$12,375</div></div>
+        <div class="alloc-row"><div class="alloc-lbl ts">Social Media Marketing</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:20%;background:var(--sky);"></div></div><div class="alloc-val ts">$5,500</div></div>
+        <div class="alloc-row"><div class="alloc-lbl to">Travel, Meet Up, OPS</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:15%;background:var(--orng);"></div></div><div class="alloc-val to">$4,125</div></div>
+        <div class="alloc-row"><div class="alloc-lbl tr">Legal / Audit</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:20%;background:var(--rose);"></div></div><div class="alloc-val tr">$5,500</div></div>
+      </div>
+      <div class="lbl mt8">ROI SCENARIOS</div>
+      <div class="tw roi-table"><table><tbody>
+        <tr><td>@ $0.0065 (Community)</td><td class="g">1.18× (gần Community)</td></tr>
+        <tr><td>@ $0.05 (Conservative)</td><td class="tgo">9×</td></tr>
+        <tr><td>@ $0.10 (Base)</td><td class="tgo">18×</td></tr>
+        <tr><td>@ $0.30 (Bull)</td><td class="tg">55×</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+
+  <!-- Seed Summary -->
+  <div class="total-bar">
+    <div><div class="label">TOTAL SEED RAISED</div><div class="value tg">$75,000</div></div>
+    <div><div class="label">TOTAL TOKENS SOLD</div><div style="font-family:var(--f1);font-size:22px;color:var(--sky);">20,000,000 WC26 (10%)</div></div>
+    <div><div class="label">AVG SEED PRICE</div><div style="font-family:var(--f1);font-size:22px;color:var(--gold);">$0.00375</div></div>
+    <div><div class="label">NGƯỜI MUA TỐI ĐA</div><div style="font-family:var(--f1);font-size:22px;color:var(--vio);">R1: 10 · R2: 25 · R3: 50</div></div>
+  </div>
+</section>
+
+<!-- ════════════════════════ 04 COMMUNITY SALE -->
+<section id="community">
+  <div class="lbl">04 — Community / Public Sale</div>
+  <div class="sec-h"><span class="ts">■</span> COMMUNITY SALE — $188,500 · 29M WC26 · $0.0065</div>
+  <div class="sec-bar"></div>
+  <p class="sub">Diễn ra <strong>sau khi hoàn thành Seed R1–R3</strong>. Stadium NFT Auction diễn ra cùng giai đoạn này.</p>
+
+  <div class="g2 mb12">
+    <div>
+      <div class="tw"><table>
+        <thead><tr><th>Phase</th><th>%</th><th>WC26</th><th>Giá trị</th><th>Min mua</th><th>Điều kiện</th></tr></thead>
+        <tbody>
+          <tr class="thl"><td><strong>Phase 1 — Whitelist</strong></td><td>40%</td><td>11,600,000</td><td class="go">$75,400</td><td class="g">$300</td><td>Airdrop participants, early supporters, KOL communities</td></tr>
+          <tr><td><strong>Phase 2 — Public FCFS</strong></td><td>30%</td><td>8,700,000</td><td class="go">$56,550</td><td class="g">$150</td><td>Until sold out hoặc hết 7 ngày</td></tr>
+          <tr class="thl"><td><strong>Phase 3 — Lottery</strong></td><td>30%</td><td>8,700,000</td><td class="go">$56,550</td><td class="g">$50</td><td>Open 3 ngày</td></tr>
+          <tr class="tgrand"><td colspan="2"><strong>TOTAL</strong></td><td><strong>29,000,000</strong></td><td><strong>$188,500</strong></td><td>—</td><td>14.5% of supply</td></tr>
+        </tbody>
+      </table></div>
+      <div class="box note mt8">
+        <div class="bt">Vesting Schedule — Community Sale</div>
+        <ul>
+          <li><strong>Cliff: NONE</strong> — token lưu thông ngay sau khi sale đóng</li>
+          <li><strong>Linear: 16.67%/tháng × 6 tháng</strong></li>
+          <li>Sale đóng ~15/5/2026 → Month 1 unlock 15/6 → Month 2 (WC đang diễn ra!) → Month 6: 15/10</li>
+          <li style="color:var(--g);font-weight:600;">✅ Perfect timing: World Cup là tháng 2–3 của vesting cycle!</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="ct ts">Phân bổ $188,500 huy động được</div>
+        <div class="alloc mt8">
+          <div class="alloc-row"><div class="alloc-lbl ts">DEX Liquidity Pool (QuickSwap WC26/USDT)</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:45%;background:var(--sky);"></div></div><div class="alloc-val ts">$84,825</div></div>
+          <div class="alloc-row"><div class="alloc-lbl tg">Marketing Blitz (User acquisition, KOL, Geo expansion)</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:30%;background:var(--g);"></div></div><div class="alloc-val tg">$56,550</div></div>
+          <div class="alloc-row"><div class="alloc-lbl to">Operations (Team, Infra, Customer support)</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:15%;background:var(--orng);"></div></div><div class="alloc-val to">$28,275</div></div>
+          <div class="alloc-row"><div class="alloc-lbl mu">Reserve (Unexpected costs, opportunities)</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:10%;background:var(--muted);"></div></div><div class="alloc-val mu">$18,850</div></div>
+        </div>
+        <div class="lbl mt12">ROI POTENTIAL</div>
+        <div class="tw mt8"><table><tbody>
+          <tr><td>Entry</td><td class="mu">$0.0065</td></tr>
+          <tr><td>Conservative ($0.05)</td><td class="g">7.7× (very achievable)</td></tr>
+          <tr><td>Base Case ($0.10)</td><td class="tgo">15.4× (realistic với 50K users)</td></tr>
+          <tr><td>Bull Case ($0.20)</td><td class="tgo">30.8× (if viral)</td></tr>
+          <tr><td>Moon ($0.50)</td><td class="tg">77× (World Cup magic 🌟)</td></tr>
+        </tbody></table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reduced Raise contingency -->
+  <details>
+    <summary>🛡️ Kịch bản: Reduce Raise (nếu không đạt full $188,500)</summary>
+    <div class="db">
+      <p class="sub">Nếu chỉ raise được ~$141,375 (75% target):</p>
+      <div class="alloc">
+        <div class="alloc-row"><div class="alloc-lbl ts">DEX Liquidity Pool — vẫn giữ $84,825</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:60%;background:var(--sky);"></div></div><div class="alloc-val ts">$84,825</div></div>
+        <div class="alloc-row"><div class="alloc-lbl tg">Marketing Blitz — giữ $56,550</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:40%;background:var(--g);"></div></div><div class="alloc-val tg">$56,550</div></div>
+        <div class="alloc-row"><div class="alloc-lbl mu">Ops + Reserve — bị cắt (0)</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:0%;background:var(--muted);"></div></div><div class="alloc-val mu">$0</div></div>
+      </div>
+      <div class="box warn"><div class="bt">Priority</div><p>Liquidity pool là không thể cắt — đây là nền tảng để token trade được. Marketing cũng cần giữ nguyên để đạt user target. Nếu Ops bị cắt, founders tự cover từ Seed allocation.</p></div>
+    </div>
+  </details>
+</section>
+
+<!-- ════════════════════════ 05 STADIUM NFT -->
+<section id="stadium">
+  <div class="lbl">05 — Stadium NFT Auction (Song song với Community Sale)</div>
+  <div class="sec-h"><span class="tgo">■</span> STADIUM NFT AUCTION — 16 VENUES · $150,000 INITIAL</div>
+  <div class="sec-bar"></div>
+  <p class="sub">Đấu giá <strong>cùng giai đoạn với Community Sale</strong>. Initial bid tổng cộng $150,000 từ 16 venues × World Cup 2026. Giá cuối cao hơn tùy mức độ tranh thầu.</p>
+
+  <div class="g2 mb12">
+    <div>
+      <div class="tw"><table>
+        <thead><tr><th>#</th><th>Stadium / City</th><th>Matches</th><th>Est. Matches</th><th>Initial Bid</th></tr></thead>
+        <tbody>
+          <tr class="thl"><td>1</td><td><strong>🏆 MetLife Stadium – NY/NJ</strong></td><td>FINAL</td><td>8</td><td class="go"><strong>$15,000</strong></td></tr>
+          <tr><td>2</td><td>Estadio Azteca – Mexico City</td><td>Business Match</td><td>5</td><td class="go">$12,500</td></tr>
+          <tr class="thl"><td>3</td><td>SoFi Stadium – Los Angeles</td><td>Group + Knockout</td><td>7</td><td class="go">$12,500</td></tr>
+          <tr><td>4</td><td>AT&T Stadium – Dallas</td><td>Group + Knockout</td><td>7</td><td class="go">$12,500</td></tr>
+          <tr class="thl"><td>5</td><td>NRG Stadium – Houston</td><td>Group</td><td>6</td><td class="go">$10,000</td></tr>
+          <tr><td>6</td><td>Arrowhead Stadium – Kansas City</td><td>Group</td><td>6</td><td class="go">$10,000</td></tr>
+          <tr class="thl"><td>7</td><td>Mercedes-Benz Stadium – Atlanta</td><td>Group</td><td>6</td><td class="go">$10,000</td></tr>
+          <tr><td>8</td><td>Lincoln Financial Field – Philadelphia</td><td>Group</td><td>6</td><td class="go">$10,000</td></tr>
+          <tr class="thl"><td>9</td><td>Hard Rock Stadium – Miami</td><td>Group</td><td>6</td><td class="go">$10,000</td></tr>
+          <tr><td>10</td><td>Levi's Stadium – SF Bay Area</td><td>Group</td><td>5</td><td class="tl">$7,500</td></tr>
+          <tr class="thl"><td>11</td><td>Lumen Field – Seattle</td><td>Group</td><td>5</td><td class="tl">$7,500</td></tr>
+          <tr><td>12</td><td>Gillette Stadium – Boston</td><td>Group</td><td>5</td><td class="tl">$7,500</td></tr>
+          <tr class="thl"><td>13</td><td>BC Place – Vancouver</td><td>Group</td><td>5</td><td class="tl">$7,500</td></tr>
+          <tr><td>14</td><td>BMO Field – Toronto</td><td>Group</td><td>5</td><td class="tl">$7,500</td></tr>
+          <tr class="thl"><td>15</td><td>Estadio BBVA – Monterrey</td><td>Group</td><td>4</td><td class="mu">$5,000</td></tr>
+          <tr><td>16</td><td>Estadio Akron – Guadalajara</td><td>Group</td><td>4</td><td class="mu">$5,000</td></tr>
+          <tr class="tgrand"><td colspan="4"><strong>TOTAL 16 VENUES</strong></td><td><strong>$150,000</strong></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="ct tgo">Phân bổ $150,000 từ Auction</div>
+        <div class="alloc mt8">
+          <div class="alloc-row"><div class="alloc-lbl tg">DAO Treasury (Development & OPS)</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:35%;background:var(--g);"></div></div><div class="alloc-val tg">$52,500</div></div>
+          <div class="alloc-row"><div class="alloc-lbl ts">Liquidity Pool + Buffer</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:30%;background:var(--sky);"></div></div><div class="alloc-val ts">$45,000</div></div>
+          <div class="alloc-row"><div class="alloc-lbl to">Marketing + Auction Cost</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:15%;background:var(--orng);"></div></div><div class="alloc-val to">$22,500</div></div>
+          <div class="alloc-row"><div class="alloc-lbl tv">Artwork Creators (Binded)</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:15%;background:var(--vio);"></div></div><div class="alloc-val tv">$22,500</div></div>
+          <div class="alloc-row"><div class="alloc-lbl mu">Direct Referral (F1=3%, F2=2%)</div><div class="alloc-bar-bg"><div class="alloc-bar" style="width:5%;background:var(--muted);"></div></div><div class="alloc-val mu">$7,500</div></div>
+        </div>
+        <div class="box tip mt12">
+          <div class="bt">Ghi chú quan trọng</div>
+          <p><strong>$150,000 là initial bid tổng</strong> (giá sàn mỗi venue). Giá cuối sau đấu giá có thể cao hơn nhiều tùy demand thị trường. MetLife (Final match) có thể tranh thầu vượt $30–50K+. Số $150K là minimum guaranteed nếu tất cả đều đạt reserve price.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ 06 MYSTERY BOX -->
+<section id="mystery">
+  <div class="lbl">06 — Mystery Box Sale (Sau Games Launch)</div>
+  <div class="sec-h"><span class="tv">■</span> MYSTERY BOX — $3,237,000 MAX · DAO GETS $1,456,650</div>
+  <div class="sec-bar"></div>
+  <p class="sub">Bán <strong>SAU KHI chuẩn bị Games Launch xong</strong>. 3 loại box với bonding curve pricing. Tổng doanh thu tối đa $3.237M nếu sold out toàn bộ.</p>
+
+  <div class="g3 mb12">
+    <!-- Rising -->
+    <div class="card" style="border-top:3px solid var(--g);">
+      <div class="ct tg">🎁 Rising Box</div>
+      <div class="total-bar" style="background:rgba(0,230,118,.05);border-color:rgba(0,230,118,.2);">
+        <div><div class="label">QUANTITY</div><div class="value tg">120,000</div></div>
+        <div style="text-align:right;"><div class="label">INITIAL PRICE</div><div style="font-family:var(--f1);font-size:20px;color:var(--g);">2,500 WC26<br><span style="font-size:13px;color:var(--muted);">= $16.25</span></div></div>
+      </div>
+      <div class="tw mb8"><table><tbody>
+        <tr><td>Player NFTs per box</td><td class="g"><strong>3 NFTs</strong></td></tr>
+        <tr><td>Common</td><td>90%</td></tr>
+        <tr><td>Rare</td><td>9%</td></tr>
+        <tr><td>Epic</td><td>1%</td></tr>
+        <tr><td>Guarantee</td><td class="mu">Không có</td></tr>
+        <tr><td>Bonding Curve</td><td class="tgo">+10% sau mỗi 5,000 packs sold</td></tr>
+        <tr><td>Max Revenue</td><td class="tg"><strong>$1,950,000</strong></td></tr>
+      </tbody></table></div>
+    </div>
+
+    <!-- Elite -->
+    <div class="card" style="border-top:3px solid var(--sky);">
+      <div class="ct ts">💎 Elite Box</div>
+      <div class="total-bar" style="background:rgba(56,189,248,.05);border-color:rgba(56,189,248,.2);">
+        <div><div class="label">QUANTITY</div><div class="value ts">30,000</div></div>
+        <div style="text-align:right;"><div class="label">INITIAL PRICE</div><div style="font-family:var(--f1);font-size:20px;color:var(--sky);">5,000 WC26<br><span style="font-size:13px;color:var(--muted);">= $32.50</span></div></div>
+      </div>
+      <div class="tw mb8"><table><tbody>
+        <tr><td>Player NFTs per box</td><td class="ts"><strong>5 NFTs</strong></td></tr>
+        <tr><td>Common</td><td>55%</td></tr>
+        <tr><td>Rare</td><td>30%</td></tr>
+        <tr><td>Epic</td><td>13%</td></tr>
+        <tr><td>Legendary</td><td class="tgo">2%</td></tr>
+        <tr><td>Guarantee</td><td class="tg">At least 1 Rare/Epic ✅</td></tr>
+        <tr><td>Bonding Curve</td><td class="tgo">+10% sau mỗi 1,000 packs sold</td></tr>
+        <tr><td>Max Revenue</td><td class="tg"><strong>$975,000</strong></td></tr>
+      </tbody></table></div>
+    </div>
+
+    <!-- Legacy -->
+    <div class="card" style="border-top:3px solid var(--vio);">
+      <div class="ct tv">👑 Legacy Box</div>
+      <div class="total-bar" style="background:rgba(167,139,250,.05);border-color:rgba(167,139,250,.2);">
+        <div><div class="label">QUANTITY</div><div class="value tv">3,200</div></div>
+        <div style="text-align:right;"><div class="label">INITIAL PRICE</div><div style="font-family:var(--f1);font-size:20px;color:var(--vio);">15,000 WC26<br><span style="font-size:13px;color:var(--muted);">= $97.50</span></div></div>
+      </div>
+      <div class="tw mb8"><table><tbody>
+        <tr><td>Player NFTs per box</td><td class="tv"><strong>10 NFTs</strong></td></tr>
+        <tr><td>Common</td><td>35%</td></tr>
+        <tr><td>Rare</td><td>30%</td></tr>
+        <tr><td>Epic</td><td>22%</td></tr>
+        <tr><td>Legendary</td><td class="tgo">10%</td></tr>
+        <tr><td>Mythic</td><td class="tr">3% 🔥</td></tr>
+        <tr><td>Guarantee</td><td class="tg">At least 1 Epic ✅</td></tr>
+        <tr><td>Pricing</td><td class="tv">Limited supply — giá tăng khi ít pack còn lại</td></tr>
+        <tr><td>Max Revenue</td><td class="tg"><strong>$312,000</strong></td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+
+  <!-- Mystery Total -->
+  <div class="total-bar">
+    <div><div class="label">TOTAL MAX REVENUE</div><div class="value tv">$3,237,000</div></div>
+    <div><div class="label">DAO TREASURY (45%)</div><div style="font-family:var(--f1);font-size:26px;color:var(--g);">$1,456,650</div></div>
+    <div><div class="label">LIQUIDITY POOL (30%)</div><div style="font-family:var(--f1);font-size:22px;color:var(--sky);">$971,100</div></div>
+    <div><div class="label">MARKETING + SALES (15%)</div><div style="font-family:var(--f1);font-size:22px;color:var(--orng);">$485,550</div></div>
+  </div>
+
+  <div class="tw mt12">
+  <table>
+    <thead><tr><th>Phân bổ Mystery Box</th><th>%</th><th>Giá trị (MAX)</th><th>Mục đích</th></tr></thead>
+    <tbody>
+      <tr><td>Direct Referral (F1=3%, F2=2%)</td><td>5%</td><td class="go">$161,850</td><td>Khuyến khích viral referral</td></tr>
+      <tr><td>Marketing & Sales Cost</td><td>15%</td><td class="go">$485,550</td><td>User acquisition, KOL, campaigns</td></tr>
+      <tr><td>Artwork Creators (Binded)</td><td>5%</td><td class="go">$161,850</td><td>Player NFT artwork creators</td></tr>
+      <tr><td>Liquidity Pool + Buffer</td><td>30%</td><td class="go">$971,100</td><td>DEX/CEX depth, market stability</td></tr>
+      <tr class="tgrand"><td><strong>🏛️ DAO Treasury (Development & OPS)</strong></td><td><strong>45%</strong></td><td><strong>$1,456,650</strong></td><td><strong>Core dev, infra, long-term ops — đây là MAX</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ════════════════════════ 07 TOTAL SUMMARY -->
+<section id="summary">
+  <div class="lbl">07 — Tổng kết tài chính</div>
+  <div class="sec-h"><span class="tgo">■</span> TỔNG KẾT — TOÀN BỘ FUNDRAISING + REVENUE</div>
+  <div class="sec-bar"></div>
+
+  <div class="tw mb12">
+  <table>
+    <thead><tr><th>Nguồn thu / Chi phí</th><th>Giai đoạn</th><th>Thứ tự</th><th>Min</th><th>Base</th><th>Max</th><th>Ghi chú</th></tr></thead>
+    <tbody>
+      <tr class="tsg"><td colspan="7">FUNDRAISING (THU VÀO)</td></tr>
+      <tr><td>Seed Round 1</td><td>T2/2026</td><td><span class="b br">1</span></td><td class="g">$25,000</td><td class="g">$25,000</td><td class="g">$25,000</td><td>10 packs · Fixed</td></tr>
+      <tr><td>Seed Round 2</td><td>T2–T3/2026</td><td><span class="b br">2</span></td><td class="g">$22,500</td><td class="g">$22,500</td><td class="g">$22,500</td><td>25 packs · Fixed</td></tr>
+      <tr><td>Seed Round 3</td><td>T3/2026</td><td><span class="b br">3</span></td><td class="g">$27,500</td><td class="g">$27,500</td><td class="g">$27,500</td><td>50 packs · Fixed</td></tr>
+      <tr class="thl"><td>Community Sale</td><td>T4–T5/2026</td><td><span class="b bs">4</span></td><td class="g">$94,250</td><td class="g">$141,375</td><td class="g">$188,500</td><td>Bear 50% · Base 75% · Bull 100%</td></tr>
+      <tr class="thl"><td>Stadium NFT Auction (cùng giai đoạn CS)</td><td>T4–T5/2026</td><td><span class="b bgo">4B</span></td><td class="g">$150,000</td><td class="g">$225,000</td><td class="g">$400,000+</td><td>Min = initial bids. Actual cao hơn khi tranh thầu.</td></tr>
+      <tr class="ttot"><td colspan="2"><strong>Total Fundraising (Seed+CS+NFT)</strong></td><td></td><td><strong class="tr">$294,250</strong></td><td><strong class="tgo">$416,375</strong></td><td><strong class="tg">$635,500+</strong></td><td><strong class="tg">Excel base = $413,500</strong></td></tr>
+      <tr class="tsg"><td colspan="7">CHI PHÍ VẬN HÀNH (SODO TABLE)</td></tr>
+      <tr><td>System Setup (VPS × 2, Domain, Tools)</td><td>T2–T5</td><td>—</td><td class="ro">$1,196</td><td class="ro">$1,280</td><td class="ro">$1,386</td><td>VPS Hostinger $480 · Domain $100 · Supabase · Notion · Docsend</td></tr>
+      <tr><td>AI Tools Subscriptions (Claude, OpenAI, MJ...)</td><td>T2–T7</td><td>—</td><td class="ro">$1,626</td><td class="ro">$1,626</td><td class="ro">$1,796</td><td>Claude Pro $600 · OpenAI $300 · OpenClaw $294 · MJ $96 · Canva...</td></tr>
+      <tr><td>Setup Labor (n8n + 7 workflows)</td><td>T2–T4</td><td>—</td><td class="ro">$1,020</td><td class="ro">$1,020</td><td class="ro">$1,020</td><td>51 giờ founder time để setup toàn bộ AI Army</td></tr>
+      <tr><td>Legal (SAFT + ToS + Token Opinion + Audit)</td><td>T2–T5</td><td>—</td><td class="ro">$13,200</td><td class="ro">$16,200</td><td class="ro">$28,200</td><td><strong>Smart Contract Audit $10–20K là chi phí lớn nhất</strong></td></tr>
+      <tr><td>Marketing (TG Ads, X Ads, KOL, PR, AMA)</td><td>T3–T5</td><td>—</td><td class="ro">$18,750</td><td class="ro">$27,000</td><td class="ro">$38,700</td><td>Funded từ CS proceeds 30% = $56,550. Không cần dùng Seed.</td></tr>
+      <tr class="ttot"><td colspan="2"><strong>Total Chi Phí Vận Hành</strong></td><td></td><td><strong class="ro">$35,792</strong></td><td><strong class="ro">$47,126</strong></td><td><strong class="ro">$71,102</strong></td><td>Audit + Marketing = 90% tổng chi phí</td></tr>
+      <tr style="border-top:2px solid var(--vio);"><td>Mystery Box (sau Games Launch)</td><td>T5–T6/2026</td><td><span class="b bv">5</span></td><td class="tv">$800,000</td><td class="tv">$2,000,000</td><td class="tv">$3,237,000</td><td>DAO nhận 45% = $1,456,650 MAX</td></tr>
+      <tr class="tgrand"><td colspan="3"><strong>NET (Thu – Chi, không tính Mystery Box)</strong></td><td><strong class="tr">$258K</strong></td><td><strong class="tgo">$369K</strong></td><td><strong class="tg">$564K+</strong></td><td>Runway thoải mái cho đến WC kick-off</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box tip">
+    <div class="bt">✅ Cách đọc số liệu tổng hợp này</div>
+    <ul>
+      <li><strong>$413,500</strong> = "Total Funds Raised Expected" trong Excel = Seed $75K + CS $188.5K + Stadium NFT $150K. Đây là target fundraising.</li>
+      <li><strong>Chi phí vận hành $38–71K</strong> (từ bảng SODO): Seed R1 $25K đủ cover toàn bộ system setup + AI tools 6 tháng đầu ($~4K). Marketing $18–39K được funded từ Community Sale proceeds sau.</li>
+      <li><strong>Smart Contract Audit $10–20K</strong> là chi phí lớn nhất — funded từ Seed R3 ($5,500 legal) + một phần CS proceeds trước khi disbursement.</li>
+      <li><strong>Mystery Box $1,456,650</strong> vào DAO Treasury = longterm dev fund, không tính vào fundraising phase.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════ 08 USER ACQUISITION -->
+<section id="user-acq">
+  <div class="lbl">08 — 10M Users Acquisition</div>
+  <div class="sec-h"><span class="ts">■</span> 10,000,000 USERS — LỘ TRÌNH 100 NGÀY</div>
+  <div class="sec-bar"></div>
+  <p class="sub">Ba trụ cột: <strong>Viral Growth Engine</strong> (Telegram Mini-App WC26: KICK-OFF) · <strong>AI Growth Engine</strong> (PIQUE — 8 modules) · <strong>Token Incentive Engine</strong> (Airdrop 12M WC26 + Mystery Box)</p>
+
+  <div class="tw mb12">
+  <table>
+    <thead><tr><th>Phase</th><th>Ngày</th><th>Thời gian</th><th>Target</th><th>KPI chốt</th><th>Hoạt động chính</th><th>AI module</th></tr></thead>
+    <tbody>
+      <tr><td><span class="b bv">Phase 0</span></td><td>1–14</td><td>Late Feb</td><td class="tv">100–200K</td><td>App stable, K≥0.8</td><td>Mini-App v0.1, Referral F1/F2, 20–30 seed TG groups, Vanguard SBT badge</td><td>Analytics tracking, PIQUE học data</td></tr>
+      <tr class="thl"><td><span class="b bg">Phase 1</span></td><td>15–42</td><td>March</td><td class="tg">1–3M</td><td>D1≥40%, K≥1.0</td><td>Nation Journey, Daily Quests, Referral Boost 2 tuần, 50–100 fan groups, Rising Box rewards (30 boxes)</td><td>PIQUE Scout, AI Daily Quiz, Anti-Sybil basic</td></tr>
+      <tr><td><span class="b bs">Phase 2</span></td><td>43–70</td><td>April</td><td class="ts">5–7M</td><td>D7≥20%, session↑</td><td>Squad Draft Warm-Up, Global Jury Lite, Badge Ladder, Leaderboards by country, Anti-Sybil tightening (40 Rising + 10 Elite + 2 Legacy)</td><td>AI Draft Simulator, AI Judge, AS Anti-Sybil</td></tr>
+      <tr class="thl"><td><span class="b bgo">Phase 3</span></td><td>71–90</td><td>May</td><td class="tgo">8–9M</td><td>DAU spike, K↑</td><td>WC Countdown 30 days, Mega Nation Wars, Influencer waves, AI Meme Factory, Wallet Connect Drive (30 Rising + 10 Elite + 2 Legacy)</td><td>AI Meme Factory, PIQUE tính điểm realtime</td></tr>
+      <tr><td><span class="b br">Phase 4</span></td><td>91–100</td><td>Early June</td><td class="tr">≥10M</td><td>Snapshot clean</td><td>Airdrop Snapshot 1/6, Anti-Sybil final, Personal Journey Report (10M ảnh), 20% Airdrop Unlock 12–14/6, Mystery Box 15/6</td><td>APJR (10M infographics), Anti-Sybil sweep</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="ct tg">🎁 Phần thưởng Game Box theo Phase</div>
+      <div class="tw"><table>
+        <thead><tr><th>Phase</th><th>Rising</th><th>Elite</th><th>Legacy</th><th>Tổng</th></tr></thead>
+        <tbody>
+          <tr><td>Phase 1 (Viral Activation)</td><td>30</td><td>5</td><td>1</td><td>36</td></tr>
+          <tr><td>Phase 2 (Engagement)</td><td>40</td><td>10</td><td>2</td><td>52</td></tr>
+          <tr><td>Phase 3 (Scale & Countdown)</td><td>30</td><td>10</td><td>2</td><td>42</td></tr>
+          <tr class="ttot"><td><strong>Tổng</strong></td><td><strong>100</strong></td><td><strong>25</strong></td><td><strong>5</strong></td><td><strong>130 boxes</strong></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="card">
+      <div class="ct ts">📊 KPI Targets toàn chiến dịch</div>
+      <div class="tw"><table><tbody>
+        <tr><td>Tổng users</td><td class="tg"><strong>10,000,000</strong> trước 11/6/2026</td></tr>
+        <tr><td>D7 Retention</td><td class="tg">≥ 20%</td></tr>
+        <tr><td>K-factor (viral coefficient)</td><td class="tg">≥ 1.0 giai đoạn cao điểm</td></tr>
+        <tr><td>On-chain conversion</td><td class="tgo">20–30% (2–3M users)</td></tr>
+        <tr><td>Wallet connect rate</td><td class="tgo">≥ 25% active users</td></tr>
+        <tr><td>Airdrop participants</td><td>≥ 5M có ít nhất 1 qualifying action</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ 09 AI ARMY SETUP -->
+<section id="ai-army">
+  <div class="lbl">09 — AI Army Setup</div>
+  <div class="sec-h"><span class="tg">■</span> AI ARMY — OPENCLAW + n8n + CODEX + CLAUDE · 8 MODULES</div>
+  <div class="sec-bar"></div>
+  <p class="sub">Kiến trúc tự động 24/7: <strong>OpenClaw</strong> orchestrates → <strong>n8n</strong> coordinates workflows → <strong>Claude</strong> generates content → <strong>Codex</strong> writes code → 8 AI modules chạy tự động → Báo cáo hàng ngày + Approve qua Telegram cho bạn.</p>
+
+  <!-- Architecture -->
+  <div class="wf mb12">
+    <div class="wf-t">🏗️ Kiến trúc tổng thể — AI Army Stack</div>
+    <div class="steps">
+      <div class="step"><div class="sn">ORCHESTRATOR</div><div class="st">OpenClaw Pro</div><div class="stool">$49–99/mth</div><div class="sd">"CEO" của AI Army. Task planning, delegation, scheduling, monitoring tất cả agents.</div></div>
+      <div class="step"><div class="sn">AUTOMATION</div><div class="st">n8n (VPS1)</div><div class="stool">$5/mth</div><div class="sd">Workflow engine. Cron triggers, API calls, DB updates, Telegram messages, approvals.</div></div>
+      <div class="step"><div class="sn">REASONING</div><div class="st">Claude API</div><div class="stool">~$20/mth base</div><div class="sd">Content (5 langs), PIQUE predictions, FAQ answers, decision summaries cho approval flow.</div></div>
+      <div class="step"><div class="sn">CODING</div><div class="st">Codex / GPT-4o</div><div class="stool">$30–50/mth</div><div class="sd">Smart contracts, TMA frontend, backend APIs, automation scripts, bot logic.</div></div>
+      <div class="step"><div class="sn">CREATIVE</div><div class="st">Midjourney</div><div class="stool">$30/mth</div><div class="sd">NFT artwork batch, meme templates, social visuals, Stadium NFT art.</div></div>
+      <div class="step"><div class="sn">YOUR CHANNEL</div><div class="st">Telegram Bot</div><div class="stool">Free</div><div class="sd">Daily reports, approval requests, critical alerts. Bạn chỉ cần tap 1 nút.</div></div>
+    </div>
+  </div>
+
+  <!-- 8 AI Modules -->
+  <div class="ct tg mb12" style="font-family:var(--f1);font-size:16px;text-transform:uppercase;">🤖 8 AI Modules từ User Acquisition Strategy</div>
+  <div class="ai-g">
+    <div class="ai" style="border-color:rgba(0,230,118,.25);">
+      <div class="ai-code bg">PS</div>
+      <div class="ai-name tg">PIQUE Scout</div>
+      <div class="ai-role">Tin nhắn cá nhân hóa theo quốc gia/ngôn ngữ. Tạo sub-group tự động cho từng nation. Phase 1–4.</div>
+      <div class="ai-kpi tg">• D1 Retention ↑ 15%</div>
+      <div class="ai-tags"><span class="tag">Claude API</span><span class="tag">n8n</span><span class="tag">Supabase</span><span class="tag">TG Bot</span></div>
+    </div>
+    <div class="ai" style="border-color:rgba(56,189,248,.25);">
+      <div class="ai-code bs">AQ</div>
+      <div class="ai-name ts">AI Daily Quiz</div>
+      <div class="ai-role">Tự động tạo 5 câu quiz/ngày từ tin tức bóng đá realtime. Phase 1–4.</div>
+      <div class="ai-kpi ts">• DAU ↑ 20%</div>
+      <div class="ai-tags"><span class="tag">Claude API</span><span class="tag">API-Football</span><span class="tag">n8n 08:00</span></div>
+    </div>
+    <div class="ai" style="border-color:rgba(245,200,66,.25);">
+      <div class="ai-code bgo">ADS</div>
+      <div class="ai-name tgo">Draft Simulator</div>
+      <div class="ai-role">Dự đoán điểm đội hình Squad Fantasy. Đề xuất cầu thủ tối ưu. Phase 2–4.</div>
+      <div class="ai-kpi tgo">• Session time ↑ 30% · 70%+ accuracy</div>
+      <div class="ai-tags"><span class="tag">Claude API</span><span class="tag">API-Football</span><span class="tag">Supabase</span></div>
+    </div>
+    <div class="ai" style="border-color:rgba(167,139,250,.25);">
+      <div class="ai-code bv">AJ</div>
+      <div class="ai-name tv">AI Judge</div>
+      <div class="ai-role">Bình luận hài hước kết quả Global Jury. Khuyến khích share viral. Phase 2–4.</div>
+      <div class="ai-kpi tv">• Share rate ↑ 40%</div>
+      <div class="ai-tags"><span class="tag">Claude API</span><span class="tag">n8n</span><span class="tag">TG + X</span></div>
+    </div>
+    <div class="ai" style="border-color:rgba(251,146,60,.25);">
+      <div class="ai-code bo">AMF</div>
+      <div class="ai-name to">Meme Factory</div>
+      <div class="ai-role">Auto-gen meme template từ trận đấu. Users share & remix. Phase 3–4.</div>
+      <div class="ai-kpi to">• K-factor ↑ · Viral post-match</div>
+      <div class="ai-tags"><span class="tag">Midjourney API</span><span class="tag">Claude caption</span><span class="tag">n8n</span></div>
+    </div>
+    <div class="ai" style="border-color:rgba(45,212,191,.25);">
+      <div class="ai-code" style="background:var(--teald);color:var(--teal);font-family:var(--f3);font-size:10px;padding:2px 9px;border-radius:10px;display:inline-block;margin-bottom:7px;">APJR</div>
+      <div class="ai-name tt">Journey Report</div>
+      <div class="ai-role">Infographic cá nhân hóa 100 ngày của mỗi user. Phase 4. Capacity: 10M ảnh.</div>
+      <div class="ai-kpi tt">• Share rate peak Phase 4</div>
+      <div class="ai-tags"><span class="tag">Midjourney</span><span class="tag">Claude data</span><span class="tag">Supabase</span></div>
+    </div>
+    <div class="ai" style="border-color:rgba(248,113,113,.25);">
+      <div class="ai-code br">AS</div>
+      <div class="ai-name tr">Anti-Sybil</div>
+      <div class="ai-role">Phát hiện bot, gian lận, referral vòng tròn. DBSCAN + K-means. Phase 2–4.</div>
+      <div class="ai-kpi tr">• 90%+ bot detection accuracy</div>
+      <div class="ai-tags"><span class="tag">DBSCAN</span><span class="tag">WalletGuard API</span><span class="tag">Admin panel</span></div>
+    </div>
+    <div class="ai" style="border-color:rgba(0,230,118,.4);background:rgba(0,230,118,.03);">
+      <div class="ai-code bg">AD</div>
+      <div class="ai-name tg">AI Dashboard</div>
+      <div class="ai-role">🔑 Tổng hợp KPI, báo cáo 08:00 UTC → Telegram bạn. Alert khi K &lt; 0.8, D7 &lt; 15%.</div>
+      <div class="ai-kpi tg">• Daily report · Realtime alerts</div>
+      <div class="ai-tags"><span class="tag">Grafana</span><span class="tag">Prometheus</span><span class="tag">n8n</span><span class="tag">TG Bot</span></div>
+    </div>
+  </div>
+
+  <!-- 10-week build plan -->
+  <details>
+    <summary>📅 Kế hoạch build 10 tuần — AI Army</summary>
+    <div class="db">
+    <div class="tw"><table>
+      <thead><tr><th>Tuần</th><th>Build</th><th>Deliverable cụ thể</th></tr></thead>
+      <tbody>
+        <tr><td><span class="b br">W1</span></td><td>PS (basic) + AD</td><td>PIQUE Scout gửi được tin chào theo quốc gia · AD dashboard cơ bản + Telegram daily report</td></tr>
+        <tr><td><span class="b bs">W2</span></td><td>AQ (MVP) + AS (basic)</td><td>Quiz tạo hàng ngày từ API-Football · AS phát hiện IP trùng</td></tr>
+        <tr><td><span class="b bg">W3</span></td><td>PS (full) + ADS (test)</td><td>PS tạo sub-group tự động theo nation · ADS dự đoán thử nghiệm</td></tr>
+        <tr><td><span class="b bgo">W4</span></td><td>AJ (test) + AMF (test)</td><td>AJ bình luận mẫu · AMF tạo meme từ data giả</td></tr>
+        <tr><td><span class="b bx">W5</span></td><td>Integrate tất cả → staging</td><td>Tất cả API ổn định · n8n workflows chạy được · TG approval flow hoạt động</td></tr>
+        <tr><td><span class="b bs">W6</span></td><td>ADS (full) + AJ (full)</td><td>ADS 70%+ accuracy · AJ safe content + hài hước</td></tr>
+        <tr><td><span class="b bo">W7</span></td><td>AMF (full) + APJR (test)</td><td>AMF tự động post-match · APJR tạo ảnh mẫu</td></tr>
+        <tr><td><span class="b br">W8</span></td><td>AS (full) + AD (full alerts)</td><td>AS 90%+ bot detect · AD realtime alert với 3 threshold</td></tr>
+        <tr><td><span class="b bv">W9</span></td><td>APJR (full)</td><td>Ready tạo 10M ảnh cá nhân hóa</td></tr>
+        <tr class="thl"><td><span class="b bg">W10</span></td><td>Total stress test</td><td>Tất cả AI chịu tải 10M users đồng thời · Go/No-go check</td></tr>
+      </tbody>
+    </table></div>
+    </div>
+  </details>
+</section>
+
+<!-- ════════════════════════ 10 TELEGRAM OPS -->
+<section id="tg-ops">
+  <div class="lbl">10 — Telegram Approval & Reporting System</div>
+  <div class="sec-h"><span style="color:var(--sky);">■</span> AI ARMY — TELEGRAM DAILY OPS</div>
+  <div class="sec-bar"></div>
+  <p class="sub">AI Army làm 24/7. Mỗi sáng 08:00 UTC tự gửi báo cáo. Khi cần quyết định quan trọng → gửi tin nhắn + nút Approve/Reject. Bạn tap 1 nút là xong.</p>
+
+  <!-- Workflow 1: Daily Report -->
+  <div class="wf sky">
+    <div class="wf-t">📊 LUỒNG 1 — BÁO CÁO HÀNG NGÀY · 08:00 UTC (100% Auto)</div>
+    <div class="steps">
+      <div class="step"><div class="sn">00:00–07:30</div><div class="st">AI Army Works</div><div class="stool">n8n + Claude + OpenClaw</div><div class="sd">Content posted, airdrop updated, PIQUE predictions published, community moderated</div></div>
+      <div class="step"><div class="sn">07:30 UTC</div><div class="st">AD Compiles</div><div class="stool">AI Dashboard (AD)</div><div class="sd">Pull từ Supabase/PostgreSQL: users, DAU, K-factor, costs, posts, alerts flagged</div></div>
+      <div class="step"><div class="sn">07:45 UTC</div><div class="st">Claude Summarize</div><div class="stool">Claude API → Vietnamese</div><div class="sd">Tóm tắt ngắn gọn. Highlight wins, issues, actions cần làm hôm nay</div></div>
+      <div class="step"><div class="sn">08:00 UTC</div><div class="st">Send → Bạn</div><div class="stool">Telegram Bot</div><div class="sd">Daily digest. Review 5 phút. Inline buttons cho any pending approvals</div></div>
+    </div>
+    <div class="tg-block mt8">
+      <div class="tg-t">📱 Mẫu Daily Report — 08:00 UTC</div>
+      <div class="tg-msg">
+        <div class="from">🤖 WC26 AI Army · Daily Report</div>
+        <div class="title">📊 NGÀY 47/100 — 12/4/2026 · 08:00 UTC</div>
+        <br>
+        📈 <strong>USERS</strong>: 2,847,392 total (+124,501 hôm qua) · K-factor: <strong>1.12</strong> ✅<br>
+        💬 <strong>COMMUNITY</strong>: 47,291 TG members · D7 retention: <strong>23%</strong> ✅<br>
+        🤖 <strong>PIQUE</strong>: 24 predictions posted · 7-day accuracy: 68%<br>
+        🎁 <strong>AIRDROP</strong>: 847M pts distributed · 89,423 wallets connected<br>
+        📣 <strong>CONTENT</strong>: 18 posts (EN/PT/ES/FR/AR) · Avg engagement: 4.2%<br>
+        💰 <strong>AI COST</strong>: $4.23 hôm qua · $89.41 tháng này (budget OK)<br>
+        ⚠️ <strong>PENDING</strong>: 1 KOL deal cần approve · 3 bot clusters flagged<br>
+        <div class="btn-r">
+          <div class="tgbtn ap">✅ Review KOL Deal</div>
+          <div class="tgbtn vw">📊 Full Dashboard</div>
+          <div class="tgbtn ed">⚙️ Settings</div>
+        </div>
+      </div>
+    </div>
+    <div class="wf-note"><strong>n8n setup:</strong> Cron node 08:00 UTC → HTTP Supabase → Claude API (Vietnamese summary) → Telegram sendMessage với inline keyboard. Notify to Notion AI Army Log. <strong>Setup: 2–3h một lần. Sau đó 100% tự động mãi mãi.</strong></div>
+  </div>
+
+  <!-- Workflow 2: Approve Flow -->
+  <div class="wf">
+    <div class="wf-t">✅ LUỒNG 2 — APPROVE FLOW · Quyết định quan trọng → 1 Tap</div>
+    <div class="steps">
+      <div class="step"><div class="sn">TRIGGER</div><div class="st">AI cần quyết định</div><div class="stool">OpenClaw / n8n</div><div class="sd">KOL deal, budget spend, ban user, deploy contract, content unusually sensitive</div></div>
+      <div class="step"><div class="sn">FORMAT</div><div class="st">Claude Prepares</div><div class="stool">Claude API</div><div class="sd">Context, options, AI recommendation, risk if no action — gọn trong 5 dòng</div></div>
+      <div class="step"><div class="sn">SEND</div><div class="st">TG → Bạn</div><div class="stool">Bot inline keyboard</div><div class="sd">Tin nhắn + 4 nút: Approve / Reject / Edit / More Info</div></div>
+      <div class="step"><div class="sn">WAIT</div><div class="st">Pause Workflow</div><div class="stool">n8n Wait Node</div><div class="sd">Workflow dừng, chờ callback_query từ button tap của bạn</div></div>
+      <div class="step"><div class="sn">EXECUTE</div><div class="st">Act + Log</div><div class="stool">n8n + Notion</div><div class="sd">Approved → execute immediately. All decisions auto-logged với timestamp.</div></div>
+    </div>
+    <div class="tg-block mt8">
+      <div class="tg-t">📱 Ví dụ: KOL Deal Approval</div>
+      <div class="tg-msg">
+        <div class="from">🔔 WC26 AI Army · Approval Required</div>
+        <div class="title">🤝 KOL DEAL — CẦN DUYỆT</div>
+        <br>
+        👤 <strong>KOL:</strong> @CryptoFootball_BR — 87K followers · Brazil market<br>
+        💰 <strong>Deal:</strong> 15,000 WC26 (~$97.50 tại $0.0065) + commission 10%<br>
+        📊 <strong>Audience:</strong> 73% Brazil · Crypto-football overlap · Eng 4.8% avg<br>
+        🎯 <strong>Dự kiến:</strong> 200–500 airdrop registrations mới từ campaign<br>
+        ⏱ <strong>Deadline:</strong> Họ cần reply trong 4h<br>
+        💡 <strong>AI Rec:</strong> APPROVE — ROI positive, phù hợp Brazil strategy
+        <div class="btn-r">
+          <div class="tgbtn ap">✅ Approve</div>
+          <div class="tgbtn rj">❌ Reject</div>
+          <div class="tgbtn ed">✏️ Counter-offer</div>
+          <div class="tgbtn vw">📊 Chi tiết</div>
+        </div>
+      </div>
+      <div class="tg-msg">
+        <div class="from">🔔 WC26 AI Army · Budget Approval</div>
+        <div class="title">💸 TELEGRAM ADS — DUYỆT CHI PHÍ</div>
+        <br>
+        📣 <strong>Campaign:</strong> Community Sale launch · Target: crypto + football<br>
+        💰 <strong>Budget:</strong> $1,500 USDT từ Marketing Blitz allocation ($56,550 tổng)<br>
+        📈 <strong>Dự kiến:</strong> 375,000 impressions · 750–1,500 new users · CPM $4<br>
+        🏦 <strong>Gnosis Safe balance:</strong> $12,420 hiện tại<br>
+        💡 <strong>AI Rec:</strong> APPROVE — K-factor đang giảm nhẹ, cần boost gấp
+        <div class="btn-r">
+          <div class="tgbtn ap">✅ Approve $1,500</div>
+          <div class="tgbtn ed">✏️ Chỉ $1,000</div>
+          <div class="tgbtn rj">❌ Hoãn lại</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workflow 3: Critical Alert -->
+  <div class="wf rose">
+    <div class="wf-t">🚨 LUỒNG 3 — CRITICAL ALERTS · Bypass daily digest · Ngay lập tức</div>
+    <div class="steps">
+      <div class="step"><div class="sn">MONITOR 24/7</div><div class="st">BetterUptime</div><div class="stool">Free</div><div class="sd">RPC node, TMA endpoint, Smart contract, Telegram Bot — check mỗi 1 phút</div></div>
+      <div class="step"><div class="sn">IF DOWN</div><div class="st">Webhook → n8n</div><div class="stool">Immediate</div><div class="sd">BetterUptime fires webhook trong vòng 60 giây</div></div>
+      <div class="step"><div class="sn">AUTO-RETRY</div><div class="st">3× Backoff</div><div class="stool">n8n retry</div><div class="sd">1m → 2m → 4m. Nếu resolved tự động → log và không disturb.</div></div>
+      <div class="step"><div class="sn">STILL DOWN</div><div class="st">URGENT TG</div><div class="stool">Bot alert bạn</div><div class="sd">🚨 URGENT tin nhắn riêng. Không chờ 08:00. Bất kể giờ nào.</div></div>
+      <div class="step"><div class="sn">RESOLVE</div><div class="st">Auto Post-mortem</div><div class="stool">Notion auto-log</div><div class="sd">Root cause, downtime, resolution — logged tự động để review sau</div></div>
+    </div>
+    <div class="tg-block mt8" style="background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.25);">
+      <div class="tg-t" style="color:var(--rose);">🚨 Ví dụ: Critical Alert (Không chờ 08:00)</div>
+      <div class="tg-msg">
+        <div class="from" style="color:var(--rose);">🚨 WC26 AI Army · CRITICAL ALERT</div>
+        <div class="title" style="color:var(--rose);">⛓ SMART CONTRACT RPC — DOWN</div>
+        <br>
+        ❌ <strong>Service:</strong> Polygon RPC (QuickNode primary node)<br>
+        ⏱ <strong>Down since:</strong> 03:47 UTC · 8 phút · Auto-retry 3× FAILED<br>
+        🎮 <strong>Impact:</strong> Oracle Challenge + Squad Fantasy entries paused<br>
+        💸 <strong>Revenue loss:</strong> ~$120/h ước tính<br>
+        🛠 <strong>Recommended:</strong> Switch to backup RPC (Alchemy) trong 5 phút<br>
+        <div class="btn-r">
+          <div class="tgbtn ap" style="border-color:var(--rose);color:var(--rose);">🔄 Switch to Backup RPC</div>
+          <div class="tgbtn vw">📋 Incident Log</div>
+        </div>
+      </div>
+    </div>
+    <div class="wf-note"><strong>SLA trong WC Live:</strong> Response trong 15 phút khi có critical alert bất kể giờ nào. 64 matches × 90 phút mỗi trận = downtime không thể chấp nhận. n8n tự switch RPC nếu bạn không respond trong 5 phút.</div>
+  </div>
+
+  <!-- n8n setup checklist -->
+  <details>
+    <summary>⚙️ n8n Setup Checklist — Từng bước</summary>
+    <div class="db">
+    <ul class="cl">
+      <li class="ci"><div class="cb" onclick="this.classList.toggle('done')"></div><div class="ci-b"><div class="ci-t">Cài n8n lên Hostinger VPS1</div><div class="ci-m"><span class="tool">SSH vào VPS → npm install -g n8n → pm2 start n8n → nginx reverse proxy port 5678</span><span class="due">Day 1</span></div></div><div class="ci-cost">$0</div></li>
+      <li class="ci"><div class="cb" onclick="this.classList.toggle('done')"></div><div class="ci-b"><div class="ci-t">Tạo Telegram Bot qua BotFather → lấy API Token</div><div class="ci-m"><span class="tool">/newbot → copy token → set commands /report /stats /approve</span><span class="due">Day 1</span></div></div><div class="ci-cost">Free</div></li>
+      <li class="ci"><div class="cb" onclick="this.classList.toggle('done')"></div><div class="ci-b"><div class="ci-t">Add credentials vào n8n: Telegram, Claude API, Supabase, Notion, OpenClaw</div><div class="ci-m"><span class="tool">n8n Settings → Credentials → Add each</span><span class="due">Day 1</span></div></div><div class="ci-cost">Free</div></li>
+      <li class="ci"><div class="cb" onclick="this.classList.toggle('done')"></div><div class="ci-b"><div class="ci-t">Import Daily Report workflow (Cron 08:00 → Supabase → Claude → TG)</div><div class="ci-m"><span class="tool">n8n import JSON → activate → test manually</span><span class="due">Day 2</span></div></div><div class="ci-cost">Free</div></li>
+      <li class="ci"><div class="cb" onclick="this.classList.toggle('done')"></div><div class="ci-b"><div class="ci-t">Setup Telegram Webhook cho callback_query (nút Approve/Reject)</div><div class="ci-m"><span class="tool">n8n Telegram Trigger → listen callback_query → route by button_data</span><span class="due">Day 2</span></div></div><div class="ci-cost">Free</div></li>
+      <li class="ci"><div class="cb" onclick="this.classList.toggle('done')"></div><div class="ci-b"><div class="ci-t">Build Content Pipeline workflow (07:00 UTC: API-Football → Claude 5 langs → TG auto-post)</div><div class="ci-m"><span class="tool">Cron → API-Football → Claude prompt per language → 5 Telegram sendMessage nodes</span><span class="due">Day 3</span></div></div><div class="ci-cost">Free</div></li>
+      <li class="ci"><div class="cb" onclick="this.classList.toggle('done')"></div><div class="ci-b"><div class="ci-t">Setup BetterUptime monitors (RPC, TMA, Bot health) + webhook → n8n</div><div class="ci-m"><span class="tool">betteruptime.com free · HTTP monitors 1-min interval · Webhook to n8n endpoint</span><span class="due">Day 3</span></div></div><div class="ci-cost">Free</div></li>
+      <li class="ci"><div class="cb" onclick="this.classList.toggle('done')"></div><div class="ci-b"><div class="ci-t">Connect Notion AI Army Log (n8n Notion node → auto-log every AI operation)</div><div class="ci-m"><span class="tool">Notion integration page → token → n8n Notion node → database ID</span><span class="due">Day 4</span></div></div><div class="ci-cost">Free</div></li>
+      <li class="ci"><div class="cb" onclick="this.classList.toggle('done')"></div><div class="ci-b"><div class="ci-t">Setup OpenClaw Pro agents (PIQUE, content, moderation) với schedules</div><div class="ci-m"><span class="tool">openclaw.ai → Create agents → Configure tools (Claude, n8n, Supabase) → Set schedules</span><span class="due">Day 3–7</span></div></div><div class="ci-cost">$49–99/mth</div></li>
+      <li class="ci"><div class="cb" onclick="this.classList.toggle('done')"></div><div class="ci-b"><div class="ci-t">Test toàn bộ workflows end-to-end với staging data</div><div class="ci-m"><span class="tool">Manual run từng workflow → verify TG message → verify Notion log → verify DB update</span><span class="due">Day 5</span></div></div><div class="ci-cost">Free</div></li>
+    </ul>
+    <div class="box tip mt8">
+      <div class="bt">⏱ Quy tắc vận hành — Target ≤ 30 phút/ngày</div>
+      <ul>
+        <li><strong>Daily report (08:00):</strong> Đọc 5 phút, tap button nếu có pending items</li>
+        <li><strong>Approve requests:</strong> 1–2 phút/cái, đến bất kỳ lúc nào trong ngày</li>
+        <li><strong>Critical alerts (🚨):</strong> Response trong 15 phút — bất kể giờ nào</li>
+        <li><strong>Weekly:</strong> 20 phút review Notion AI Army Log, điều chỉnh prompts nếu cần</li>
+      </ul>
+    </div>
+    </div>
+  </details>
+</section>
+
+<!-- ════════════════════════ 11 WORKFLOW SETUP GUIDE -->
+<section id="workflow-setup">
+  <div class="lbl">11 — Setup Guide — Each Automation Flow</div>
+  <div class="sec-h"><span class="tg">■</span> SETUP CHI TIẾT — TỪNG LUỒNG n8n + OPENCLAW</div>
+  <div class="sec-bar"></div>
+  <p class="sub">Hướng dẫn từng bước cụ thể để setup 7 flow automation. Không cần biết code — chỉ cần làm theo thứ tự. Thời gian ước tính tổng: <strong class="tgo">~51 giờ</strong> (khoảng 2 tuần làm part-time 3–4 tiếng/ngày).</p>
+
+  <!-- Prerequisites -->
+  <div class="box note mb12">
+    <div class="bt">📋 Chuẩn bị trước khi setup (làm trong 1 ngày đầu)</div>
+    <ul>
+      <li><strong>Tạo tài khoản:</strong> Supabase.com · n8n.io (docs) · Notion.so · BetterUptime.com · OpenClaw.ai</li>
+      <li><strong>API Keys cần có:</strong> Telegram Bot Token (từ @BotFather) · Claude API Key (console.anthropic.com) · Supabase URL + Anon Key · Notion Integration Token · OpenClaw API Key</li>
+      <li><strong>Lưu tất cả vào 1 file <code>.env</code></strong> trên máy local — không commit lên GitHub</li>
+      <li><strong>Thứ tự bắt buộc:</strong> Làm Flow 1 (Daily Report) trước — nó là backbone. Other flows sau kế thừa cùng credential.</li>
+    </ul>
+  </div>
+
+  <!-- L1: Daily Report -->
+  <details open>
+    <summary>📊 Flow 1 — Daily Report Tự Động 08:00 UTC (~4 giờ setup)</summary>
+    <div class="db">
+      <div class="box tip mb12">
+        <div class="bt">Mục tiêu</div>
+        <p>Mỗi sáng 08:00 UTC, n8n tự pull số liệu từ DB, gọi Claude tóm tắt bằng tiếng Việt, rồi gửi tin nhắn Telegram kèm nút bấm cho bạn. <strong>Không cần làm gì</strong> trừ khi có cảnh báo.</p>
+      </div>
+      <div class="tw mb8"><table>
+        <thead><tr><th>#</th><th>Bước</th><th>Làm gì cụ thể</th><th>Công cụ</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Tạo Telegram Bot</strong></td><td>Mở Telegram → tìm @BotFather → gõ <code>/newbot</code> → đặt tên "WC26 AI Army" → copy Token (dạng <code>1234567890:AAF...</code>). Sau đó gõ <code>/start</code> với bot của mình để lấy <strong>Chat ID</strong> (dùng @userinfobot để lấy ID của bạn).</td><td>Telegram</td></tr>
+          <tr class="thl"><td>2</td><td><strong>Tạo Supabase view</strong></td><td>Vào Supabase → SQL Editor → tạo view <code>daily_kpi</code> gộp: COUNT users, DAU hôm qua, K-factor, tổng airdrop points, số wallets, chi phí AI ngày hôm qua, số posts đã đăng. View này n8n sẽ query mỗi sáng.</td><td>Supabase SQL</td></tr>
+          <tr><td>3</td><td><strong>Tạo workflow trong n8n</strong></td><td>n8n → New Workflow → đặt tên "WC26 Daily Report". Add nodes theo thứ tự: <br>① <strong>Schedule Trigger</strong>: Cron = <code>0 8 * * *</code> (08:00 UTC mỗi ngày) <br>② <strong>HTTP Request</strong>: GET Supabase REST API → endpoint <code>/rest/v1/daily_kpi</code>, header <code>apikey: YOUR_ANON_KEY</code> <br>③ <strong>Code Node</strong>: format data thành JSON sạch <br>④ <strong>HTTP Request</strong>: POST Claude API → <code>https://api.anthropic.com/v1/messages</code>, body: model <code>claude-opus-4-6</code>, prompt: "Dưới đây là số liệu WC26 hôm nay. Tóm tắt thành báo cáo sáng tiếng Việt, ngắn gọn, highlight điểm tốt và vấn đề cần xử lý: {{$json.data}}" <br>⑤ <strong>Telegram node</strong>: sendMessage → chat_id của bạn, text = Claude response, parse_mode = HTML, reply_markup = inline_keyboard với 3 nút</td><td>n8n</td></tr>
+          <tr class="thl"><td>4</td><td><strong>Thêm inline keyboard buttons</strong></td><td>Trong Telegram node, thêm <code>reply_markup</code>:<br><pre style="background:rgba(0,0,0,.3);padding:8px;border-radius:4px;font-size:10px;overflow-x:auto;">{"inline_keyboard": [[
+  {"text":"📊 Full Dashboard","callback_data":"FULL_STATS"},
+  {"text":"⚙️ Settings","callback_data":"SETTINGS"}
+]]}</pre>Chú ý: nút Approve chỉ xuất hiện khi có pending items — xử lý trong Flow 2.</td><td>n8n Telegram node</td></tr>
+          <tr><td>5</td><td><strong>Test và kích hoạt</strong></td><td>Click "Execute Workflow" thủ công → kiểm tra tin nhắn TG đến chưa → nếu OK → toggle "Active" để lịch chạy tự động. Kiểm tra lần đầu: chờ đến 08:00 UTC hôm sau.</td><td>n8n</td></tr>
+          <tr class="thl"><td>6</td><td><strong>Log vào Notion</strong></td><td>Thêm node cuối: <strong>Notion node</strong> → Create Page trong database "AI Army Log" → ghi: Date, Agent="AD", Action="Daily Report", Tokens_used, Cost ($0.002–0.005 per report).</td><td>n8n + Notion</td></tr>
+        </tbody>
+      </table></div>
+      <div class="box warn">
+        <div class="bt">💡 Tip quan trọng</div>
+        <p>Claude prompt cần có <strong>ngữ cảnh cố định</strong> ở đầu: "Bạn là AI Dashboard của WC26 NFT Fantasy. Dự án đang trong giai đoạn [phase]. Target: 10M users trước 11/6/2026. Hôm nay là ngày [N]/100." — Điều này giúp Claude không phải giải thích lại context mỗi lần, báo cáo ngắn gọn và đúng tone hơn.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- L2: Approve Flow -->
+  <details>
+    <summary>✅ Flow 2 — Approve Flow · Quyết định 1 tap (~5 giờ setup)</summary>
+    <div class="db">
+      <div class="box tip mb12">
+        <div class="bt">Mục tiêu</div>
+        <p>Khi AI Army cần quyết định (KOL deal, chi tiền, ban user...), n8n tự động gửi TG với context + recommendation. Bạn tap Approve hoặc Reject → AI thực thi ngay. <strong>Không cần mở laptop.</strong></p>
+      </div>
+      <div class="tw mb8"><table>
+        <thead><tr><th>#</th><th>Bước</th><th>Làm gì cụ thể</th><th>Công cụ</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Tạo Webhook Trigger</strong></td><td>n8n → New Workflow "WC26 Approve Flow" → node đầu: <strong>Telegram Trigger</strong> → chọn event <code>callback_query</code> (đây là event khi user tap button). Lấy webhook URL từ n8n → dán vào Telegram Bot webhook bằng API: <code>https://api.telegram.org/bot{TOKEN}/setWebhook?url={N8N_WEBHOOK_URL}</code></td><td>n8n + Telegram API</td></tr>
+          <tr class="thl"><td>2</td><td><strong>Route theo button_data</strong></td><td>Thêm <strong>Switch node</strong> → route dựa trên <code>{{$json.callback_query.data}}</code>:<br>• <code>APPROVE_KOL</code> → branch xử lý KOL<br>• <code>REJECT_KOL</code> → branch từ chối<br>• <code>APPROVE_BUDGET</code> → branch chi tiền<br>• <code>BAN_USER</code> → branch ban</td><td>n8n Switch node</td></tr>
+          <tr><td>3</td><td><strong>Xử lý APPROVE_KOL</strong></td><td>Branch này: ① Gọi Notion API → cập nhật KOL CRM → status = "Approved" ② HTTP Request → gửi tin nhắn TG cho KOL (qua n8n HTTP call) ③ Gửi confirmation TG lại cho bạn: "✅ Deal đã được approve và đã gửi cho @KOL_handle"</td><td>n8n + Notion</td></tr>
+          <tr class="thl"><td>4</td><td><strong>Trigger approve từ OpenClaw</strong></td><td>Trong OpenClaw, khi agent cần approval → gọi webhook n8n endpoint: POST <code>/webhook/request-approval</code> với body: <code>{type, context, recommendation, deadline}</code> → n8n nhận → Claude format → gửi TG với inline buttons kèm <code>callback_data</code> tương ứng</td><td>OpenClaw → n8n</td></tr>
+          <tr><td>5</td><td><strong>Timeout handling</strong></td><td>Thêm <strong>Wait node</strong> (4 giờ) sau khi gửi request. Nếu hết 4h chưa có response → gửi reminder TG. Nếu hết 8h → escalate với 🚨 và gửi lại lần 2.</td><td>n8n Wait node</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <!-- L3: Content Pipeline -->
+  <details>
+    <summary>📣 Flow 3 — Content Pipeline · Auto-post 5 ngôn ngữ mỗi ngày (~6 giờ setup)</summary>
+    <div class="db">
+      <div class="box tip mb12">
+        <div class="bt">Mục tiêu</div>
+        <p>Mỗi ngày 07:00 UTC: n8n fetch tin bóng đá từ API-Football → Claude viết 5 phiên bản (EN/PT/ES/FR/VI) → auto-post lên 5 kênh Telegram + Twitter. <strong>Không cần bạn viết gì.</strong></p>
+      </div>
+      <div class="tw mb8"><table>
+        <thead><tr><th>#</th><th>Bước</th><th>Làm gì cụ thể</th><th>Công cụ</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Setup API-Football</strong></td><td>Đăng ký tại api-football.com → lấy API key → test endpoint: <code>GET /fixtures?date=2026-04-15&status=FT</code> để lấy kết quả ngày hôm qua. Endpoint PIQUE dùng: fixtures, standings, players, topscorers.</td><td>API-Football ($15/mo)</td></tr>
+          <tr class="thl"><td>2</td><td><strong>Node fetch dữ liệu</strong></td><td>Schedule 07:00 UTC → <strong>HTTP Request</strong> → API-Football → lấy fixtures + top stories của ngày → <strong>Code node</strong>: chọn 3 trận/sự kiện thú vị nhất (dựa trên goals scored, big club, upset) → format thành JSON: <code>{match, teams, score, highlights}</code></td><td>n8n</td></tr>
+          <tr><td>3</td><td><strong>Claude viết 5 ngôn ngữ song song</strong></td><td>Dùng <strong>Split In Batches</strong> hoặc 5 HTTP Request node song song, mỗi node gọi Claude với prompt khác nhau:<br>• EN: "Write an engaging WC26 community post about these match results for English crypto-football fans..."<br>• PT: "Escreva um post animado sobre estes resultados para a comunidade WC26 Brasil..."<br>• ES: "Escribe un post sobre estos resultados para la comunidad WC26 LatAm..."<br>• FR/AR tương tự. Claude tự thêm hashtag + emoji phù hợp từng thị trường.</td><td>Claude API × 5</td></tr>
+          <tr class="thl"><td>4</td><td><strong>Auto-post lên TG channels</strong></td><td>5 Telegram nodes → mỗi node post vào 1 channel (cần bot là admin của channel): @WC26Global (EN), @WC26Brasil (PT), @WC26LatAm (ES), @WC26Africa (EN+FR), @WC26VN (VI). Schedule posts: 08:00, 08:05, 08:10, 08:15, 08:20 UTC để không bị flood.</td><td>n8n Telegram</td></tr>
+          <tr><td>5</td><td><strong>Twitter post (optional)</strong></td><td>Thêm <strong>Twitter node</strong> với OAuth token → post English version + ảnh (Midjourney pre-generated) lên @WC26Token. Hoặc dùng Buffer.com free tier để schedule thêm.</td><td>n8n Twitter node</td></tr>
+          <tr class="thl"><td>6</td><td><strong>Engagement check lúc 16:00</strong></td><td>Cron 16:00 UTC → HTTP Request → Telegram Bot API <code>getForwardersCount</code> → nếu post nào có engagement &lt; 2% → tạo Notion task "Review content" → gửi TG alert nhẹ (không urgent).</td><td>n8n + Notion</td></tr>
+        </tbody>
+      </table></div>
+      <div class="box warn">
+        <div class="bt">⚠️ Lưu ý về Claude API cost</div>
+        <p>5 bài × 1 lần/ngày × ~500 tokens/bài = ~2,500 tokens/ngày. Tại $3/1M input tokens = <strong>$0.0075/ngày</strong> (~$0.23/tháng cho content pipeline). Rất rẻ. Budget $600 Claude Pro bao gồm cả phần này.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- L4: Airdrop Points -->
+  <details>
+    <summary>🎁 Flow 4 — Airdrop Points Engine (~8 giờ setup)</summary>
+    <div class="db">
+      <div class="box tip mb12">
+        <div class="bt">Mục tiêu</div>
+        <p>Bot Telegram tự động nhận hành động user (check-in, refer, vote) → xác minh Anti-Sybil → cộng điểm vào DB → cập nhật leaderboard mỗi ngày. Hoàn toàn tự động, không cần thao tác thủ công.</p>
+      </div>
+      <div class="tw mb8"><table>
+        <thead><tr><th>#</th><th>Bước</th><th>Làm gì cụ thể</th><th>Công cụ</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Schema Supabase</strong></td><td>Tạo 3 tables trong Supabase:<br>• <code>users</code>: id, telegram_id, username, referrer_id, joined_at, wallet, country, ip_hash, tg_account_age_days<br>• <code>airdrop_actions</code>: user_id, action_type, points_awarded, timestamp, verified (bool)<br>• <code>sybil_flags</code>: user_id, flag_reason, cluster_id, flagged_at, status</td><td>Supabase</td></tr>
+          <tr class="thl"><td>2</td><td><strong>Bot lắng nghe hành động</strong></td><td>PIQUE Bot (chạy trên VPS1) dùng python-telegram-bot hoặc telegraf.js:<br>• Lệnh <code>/checkin</code> → emit event → webhook đến n8n<br>• Lệnh <code>/refer @user</code> → validate → emit event<br>• Button vote trong poll → callback → emit event<br>Mỗi event POST đến n8n endpoint: <code>/webhook/airdrop-action</code> với payload <code>{user_id, action, metadata}</code></td><td>PIQUE Bot + n8n</td></tr>
+          <tr><td>3</td><td><strong>Anti-Sybil validation (AS module)</strong></td><td>n8n nhận event → Code node chạy checks:<br>① IP hash đã dùng &lt; 3 lần/ngày?<br>② TG account age &gt; 30 ngày?<br>③ Referral chain không có vòng tròn (A→B→C→A)?<br>④ Không có 5+ accounts cùng IP trong 24h?<br>Nếu pass → proceed. Nếu fail → mark suspect → flag Notion → gửi TG alert nhẹ.</td><td>n8n Code node</td></tr>
+          <tr class="thl"><td>4</td><td><strong>Cộng điểm vào DB</strong></td><td>Sau validation: <strong>Supabase node</strong> → UPSERT vào <code>airdrop_actions</code> → increment <code>users.total_points</code> bằng Supabase RPC function (atomic, tránh race condition). Gửi confirmation đến user qua Bot: "✅ +50 pts | Tổng: 1,250 pts 🎯"</td><td>n8n + Supabase</td></tr>
+          <tr><td>5</td><td><strong>Leaderboard tự động hàng tuần</strong></td><td>Cron mỗi Thứ Hai 09:00 UTC → Supabase query TOP 20 users by points → Code node format bảng text đẹp → Telegram Bot post vào tất cả channels kèm country flags và point totals.</td><td>n8n + Supabase</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <!-- L5: Contract Monitor -->
+  <details>
+    <summary>🛡️ Flow 5 — Smart Contract Monitor 24/7 (~3 giờ setup)</summary>
+    <div class="db">
+      <div class="box tip mb12">
+        <div class="bt">Mục tiêu</div>
+        <p>BetterUptime ping 16 endpoints mỗi 60 giây. Nếu có gì down → webhook → n8n auto-retry → nếu không phục hồi trong 5 phút → TG alert khẩn với hướng dẫn fix cụ thể.</p>
+      </div>
+      <div class="tw mb8"><table>
+        <thead><tr><th>#</th><th>Bước</th><th>Làm gì cụ thể</th><th>Công cụ</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Setup BetterUptime monitors</strong></td><td>betteruptime.com → Add monitors cho từng endpoint:<br>• PIQUE Bot health: <code>https://vps1.wc26nft.info/health</code><br>• TMA backend: <code>https://api.wc26nft.info/health</code><br>• Polygon RPC QuickNode: <code>https://polygon-mainnet.quiknode.pro/YOUR_KEY/</code> (POST eth_blockNumber)<br>• Landing page: <code>https://wc26nft.info</code><br>• Supabase API: <code>https://xyz.supabase.co/rest/v1/</code><br>Frequency: 1 min. Alert after: 2 consecutive failures.</td><td>BetterUptime</td></tr>
+          <tr class="thl"><td>2</td><td><strong>Webhook → n8n</strong></td><td>BetterUptime → Integrations → Webhook → URL = n8n endpoint <code>/webhook/monitor-alert</code>. Payload tự động gồm: monitor_id, url, status, reason.</td><td>BetterUptime + n8n</td></tr>
+          <tr><td>3</td><td><strong>Auto-retry logic</strong></td><td>n8n nhận alert → <strong>Wait node</strong> 60 giây → HTTP Request ping lại → IF still down: Wait 120s → ping lại → IF still down: Wait 240s → ping lại → IF still down sau 3 lần → execute "send critical alert" branch.</td><td>n8n</td></tr>
+          <tr class="thl"><td>4</td><td><strong>Gửi alert khẩn với fix guide</strong></td><td>Branch critical alert → Claude API: "Service X down 7+ phút. Context: [service details]. Viết hướng dẫn fix ngắn gọn 3 bước cho non-technical founder." → gửi TG với format: 🚨 + service + downtime + Claude fix guide + 2 action buttons.</td><td>Claude + TG</td></tr>
+          <tr><td>5</td><td><strong>Backup RPC auto-switch</strong></td><td>Nếu alert là Polygon RPC primary down → n8n tự động SSH vào VPS1 hoặc dùng <code>.env</code> file update: switch <code>RPC_URL</code> từ QuickNode sang Alchemy backup → PM2 restart service. <strong>Hoàn toàn tự động, không cần bạn làm gì.</strong></td><td>n8n + VPS1 PM2</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <!-- L6: OpenClaw Agent Config -->
+  <details>
+    <summary>🤖 Flow 6 — OpenClaw Agents Setup · PIQUE, AQ, ADS (~4 giờ setup)</summary>
+    <div class="db">
+      <div class="box tip mb12">
+        <div class="bt">Mục tiêu</div>
+        <p>OpenClaw là "bộ não" điều phối. Tạo 3 agent chính: PIQUE (dự đoán + giao tiếp), AQ (quiz hàng ngày), ADS (draft simulator). Mỗi agent có tools, schedule, và context riêng.</p>
+      </div>
+      <div class="tw mb8"><table>
+        <thead><tr><th>Agent</th><th>Config cụ thể</th><th>Tools gán</th><th>Schedule</th></tr></thead>
+        <tbody>
+          <tr><td><strong>PIQUE Scout (PS)</strong></td><td>System prompt: "Bạn là PIQUE — AI Football Oracle của WC26. Nhiệm vụ: gửi predictions bóng đá cá nhân hóa theo ngôn ngữ và quốc gia từng user. Tone: tự tin, hài hước, có emoji bóng đá." Tools: API-Football read, Supabase write (post predictions), Telegram send. Knowledge base: WC26 rules, current standings, player form.</td><td>API-Football · Supabase · Telegram Bot · Claude API</td><td>Chạy 07:30 UTC mỗi ngày · Event-triggered sau match kết thúc</td></tr>
+          <tr class="thl"><td><strong>AI Daily Quiz (AQ)</strong></td><td>System prompt: "Tạo 5 câu hỏi trắc nghiệm về bóng đá từ tin tức ngày hôm nay. Câu hỏi phải: dễ hiểu, vui, 4 lựa chọn A/B/C/D, có 1 câu về WC26 game rules. Format: JSON array." Output là Telegram poll để users vote.</td><td>API-Football · Perplexity (web search) · Telegram sendPoll</td><td>08:15 UTC mỗi ngày</td></tr>
+          <tr><td><strong>AI Draft Simulator (ADS)</strong></td><td>System prompt: "Bạn là chuyên gia phân tích đội hình WC26. Khi user gửi đội hình Squad Fantasy, tính điểm dự kiến dựa trên form cầu thủ, lịch thi đấu tuần tới, injuries. Giải thích lý do ngắn gọn. Đề xuất 1 swap để tối ưu." Cần accuracy tracking: lưu predictions → compare với actual results → tính 7-day accuracy.</td><td>API-Football · Supabase (read/write) · Claude API</td><td>On-demand khi user trigger + 09:00 UTC post top lineup recommendations</td></tr>
+          <tr class="thl"><td><strong>Anti-Sybil (AS)</strong></td><td>Không dùng OpenClaw — chạy trực tiếp trong n8n Code node (DBSCAN logic implement bằng JavaScript). Tham khảo: npm package <code>density-clustering</code> cho DBSCAN. WalletGuard API để check wallet age + transaction history.</td><td>n8n Code · WalletGuard API · Supabase</td><td>Real-time, triggered theo từng action</td></tr>
+        </tbody>
+      </table></div>
+      <div class="box note">
+        <div class="bt">🔧 Cách gán tools trong OpenClaw</div>
+        <p>OpenClaw UI → Create Agent → Tools tab → Add Tool → chọn "HTTP Request" → điền endpoint (API-Football, Supabase, etc.) → save. Agent sẽ quyết định KHAI nào call tool nào dựa trên task. Bạn chỉ cần định nghĩa tool 1 lần.</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ════════════════════════ 12 AI ARMY AUTONOMOUS OPS -->
+<section id="ai-autonomous">
+  <div class="lbl">12 — How AI Army Operates Autonomously</div>
+  <div class="sec-h"><span class="tg">■</span> AI ARMY AUTONOMOUS OPERATIONS — HOW IT WORKS</div>
+  <div class="sec-bar"></div>
+  <p class="sub">Sau khi setup xong, hệ thống chạy <strong>hoàn toàn tự động 24/7</strong>. Không có server "ngủ" — VPS1, VPS2 và Supabase luôn active. Đây là vòng lặp một ngày điển hình của AI Army.</p>
+
+  <!-- Daily timeline -->
+  <div class="card mb16">
+    <div class="ct tg">⏰ Một ngày điển hình của AI Army (Không cần bạn làm gì trừ đánh dấu ô bên phải)</div>
+    <div class="tw mt8"><table>
+      <thead><tr><th>Giờ (UTC)</th><th>Agent</th><th>Việc làm cụ thể</th><th>Output</th><th>Bạn cần làm?</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">00:00–06:00</td><td><span class="b bx">AS</span></td><td>Quét tất cả airdrop actions từ ngày hôm qua, chạy DBSCAN clustering phát hiện bot farms, flag suspicious accounts</td><td>Flagged list trong Supabase · Alert nếu cluster &gt; 20 accounts</td><td class="g">Không</td></tr>
+        <tr class="thl"><td class="mono">06:00</td><td><span class="b bx">AD</span></td><td>Pull tất cả metrics từ Supabase: new users, DAU, K-factor, points distributed, wallets connected, AI costs, content engagement</td><td>JSON data package cho buổi sáng</td><td class="g">Không</td></tr>
+        <tr><td class="mono">07:00</td><td><span class="b bg">PS</span> <span class="b bs">AQ</span> <span class="b bgo">ADS</span></td><td>Fetch dữ liệu bóng đá từ API-Football: fixtures hôm nay, kết quả hôm qua, player stats, injuries, standings</td><td>Data package cho content ngày hôm nay</td><td class="g">Không</td></tr>
+        <tr class="thl"><td class="mono">07:15</td><td><span class="b bg">PS</span></td><td>Claude generate PIQUE predictions cho các trận hôm nay theo 5 ngôn ngữ (EN/PT/ES/FR/VI) với confidence % và reasoning</td><td>5 prediction posts sẵn sàng đăng</td><td class="g">Không</td></tr>
+        <tr><td class="mono">07:30</td><td><span class="b bs">AQ</span></td><td>Claude tạo 5 câu hỏi quiz từ tin tức hôm nay + 1 câu về WC26 game rules → format Telegram poll</td><td>5 polls sẵn sàng (1 cho mỗi ngôn ngữ)</td><td class="g">Không</td></tr>
+        <tr class="thl"><td class="mono">07:45</td><td><span class="b bg">AD</span></td><td>Claude compile daily report bằng tiếng Việt: số users, K-factor, issues, wins, pending decisions</td><td>Báo cáo sáng đã format</td><td class="g">Không</td></tr>
+        <tr><td class="mono">08:00</td><td><span class="b bg">AD</span></td><td>n8n gửi báo cáo + PIQUE predictions + quiz lên TG channels và TG cá nhân của bạn đồng thời</td><td><strong>Bạn nhận báo cáo sáng trên điện thoại</strong></td><td class="tgo"><strong>Đọc 5 phút</strong></td></tr>
+        <tr class="thl"><td class="mono">08:00–22:00</td><td><span class="b bx">AS</span></td><td>Realtime: mỗi check-in/refer/vote → validate → cộng điểm → confirm user trong &lt; 2 giây</td><td>Points DB luôn up-to-date · User nhận confirm ngay</td><td class="g">Không</td></tr>
+        <tr><td class="mono">09:00</td><td><span class="b bgo">ADS</span></td><td>Post "Top 3 Squad Lineups hôm nay" dựa trên form + fixtures → gợi ý cho users đang xây đội</td><td>1 post vào @WC26Global + @WC26VN</td><td class="g">Không</td></tr>
+        <tr class="thl"><td class="mono">Sau match</td><td><span class="b bo">AMF</span> <span class="b bv">AJ</span></td><td>Tự động trigger khi match kết thúc: AMF gen meme template từ kết quả, AJ viết bình luận hài hước bằng 5 ngôn ngữ</td><td>Meme + commentary đăng trong 5 phút sau match</td><td class="g">Không</td></tr>
+        <tr><td class="mono">16:00</td><td><span class="b bg">AD</span></td><td>Check engagement mọi posts: nếu bài nào &lt; 2% engagement → tạo A/B test variant → thử lại với headline khác</td><td>Auto A/B test hoặc Notion task nếu cần review</td><td class="g">Không (trừ khi AD flag)</td></tr>
+        <tr class="thl"><td class="mono">22:00</td><td><span class="b bg">AD</span></td><td>Compile "end of day" mini-report: nhanh summary 3 dòng gửi kèm báo cáo sáng hôm sau</td><td>Data lưu Supabase</td><td class="g">Không</td></tr>
+        <tr><td class="mono">Thứ Hai 09:00</td><td><span class="b bg">AD</span></td><td>Post leaderboard hàng tuần Top 20 airdrop points lên tất cả channels với cờ quốc gia</td><td>Weekly leaderboard viral post</td><td class="g">Không</td></tr>
+        <tr class="ttot"><td colspan="4"><strong>Tổng thời gian AI hoạt động trong ngày</strong></td><td><strong class="tg">~22–24 giờ/ngày</strong></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <!-- Quy tắc tự quyết định -->
+  <div class="g2 mb16">
+    <div class="card">
+      <div class="ct tg">🟢 AI Tự Làm (không cần hỏi)</div>
+      <ul style="margin-left:14px;font-size:13px;line-height:1.9;">
+        <li>Post content hàng ngày theo schedule đã cài</li>
+        <li>Cộng/trừ airdrop points theo rule đã định</li>
+        <li>Gửi confirm cho user sau mỗi action</li>
+        <li>Tạo và post leaderboard hàng tuần</li>
+        <li>Flag suspicious accounts (không ban ngay)</li>
+        <li>Retry khi API fail (tối đa 3 lần)</li>
+        <li>Switch backup RPC khi primary down</li>
+        <li>Gen PIQUE predictions + Daily Quiz</li>
+        <li>Post meme + commentary sau match</li>
+        <li>Log mọi thứ vào Notion tự động</li>
+        <li>Compile và gửi daily report 08:00 UTC</li>
+        <li>A/B test content khi engagement thấp</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="ct to">🟡 AI Hỏi trước khi làm (gửi TG Approve)</div>
+      <ul style="margin-left:14px;font-size:13px;line-height:1.9;">
+        <li>Ký KOL deal &gt; 5,000 WC26 hoặc &gt; $100</li>
+        <li>Chi budget &gt; $500 cho bất kỳ campaign nào</li>
+        <li>Ban vĩnh viễn 1 user (chỉ freeze tạm thời trước)</li>
+        <li>Deploy hoặc upgrade smart contract</li>
+        <li>Thay đổi airdrop rules/points multiplier</li>
+        <li>Post content nhạy cảm (liên quan chính trị, pháp lý)</li>
+        <li>Respond với media/báo chí</li>
+        <li>Cấp whitelist slot đặc biệt cho user</li>
+      </ul>
+      <div class="box tip mt8"><div class="bt">Thời hạn phản hồi</div><p><strong>Normal requests:</strong> 24 giờ. <strong>Time-sensitive (KOL deadline):</strong> ghi rõ trong tin nhắn. <strong>Critical:</strong> 15 phút.</p></div>
+    </div>
+  </div>
+
+  <!-- Escalation matrix -->
+  <div class="card mb16">
+    <div class="ct tr">🔴 Ma Trận Escalation — AI Biết Lúc Nào Cần Gọi Khẩn</div>
+    <div class="tw mt8"><table>
+      <thead><tr><th>Tình huống</th><th>AI phản ứng thế nào</th><th>Gửi TG</th><th>SLA phản hồi</th></tr></thead>
+      <tbody>
+        <tr><td>K-factor giảm từ 1.0 xuống &lt; 0.8</td><td>Flag trong daily report + suggest 3 actions (push notif, bonus referral, content boost)</td><td>🟡 Tin nhắn sáng</td><td>Ngày hôm sau</td></tr>
+        <tr class="thl"><td>D7 retention &lt; 15%</td><td>Tự động activate "Re-engagement sequence" (3 ngày tin nhắn cá nhân cho inactive users)</td><td>🟡 Report + action taken</td><td>Không cần action</td></tr>
+        <tr><td>Phát hiện bot cluster &gt; 50 accounts</td><td>Freeze toàn bộ accounts trong cluster → gửi approval request để ban vĩnh viễn</td><td>🟡 Approve/Reject request</td><td>24 giờ</td></tr>
+        <tr class="thl"><td>Smart contract pause (bị hack hoặc bug)</td><td>Tự động call <code>pause()</code> function trên contract (nếu đã setup emergency role) + alert ngay</td><td>🚨 CRITICAL ngay lập tức</td><td>15 phút</td></tr>
+        <tr><td>RPC node down &gt; 5 phút</td><td>Auto-switch sang backup RPC + notify</td><td>🟡 FYI sau khi fix xong</td><td>Không cần action</td></tr>
+        <tr class="thl"><td>Community Sale soft cap chưa đạt sau 7 ngày</td><td>Draft emergency marketing plan + KOL outreach list, gửi options để bạn quyết định</td><td>🚨 URGENT request</td><td>4 giờ</td></tr>
+        <tr><td>Telegram Bot bị ban/block</td><td>Gửi alert + checklist recovery steps (appeal, create backup bot, redirect traffic)</td><td>🚨 CRITICAL</td><td>1 giờ</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <!-- Tự học và cải thiện -->
+  <div class="card">
+    <div class="ct ts">📈 AI Army Tự Học và Cải Thiện Theo Thời Gian</div>
+    <p class="sub">AI Army không đứng yên — nó improve dựa trên data thực tế của chính dự án WC26:</p>
+    <div class="tw mt8"><table>
+      <thead><tr><th>Module</th><th>Học từ dữ liệu gì</th><th>Cải thiện như thế nào</th><th>Timeline</th></tr></thead>
+      <tbody>
+        <tr><td><strong>PIQUE (ADS)</strong></td><td>Predictions đã đưa ra vs kết quả thực tế của match</td><td>Điều chỉnh weight cho từng yếu tố (form > standings? Away goals > home?) qua prompt engineering tự động</td><td>Mỗi tuần</td></tr>
+        <tr class="thl"><td><strong>AQ Quiz</strong></td><td>Câu hỏi nào có nhiều người trả lời nhất, câu nào bị bỏ qua</td><td>Tăng tỷ lệ câu về chủ đề hot (goals, upsets) · Giảm câu stats khô khan</td><td>Mỗi tuần</td></tr>
+        <tr><td><strong>PS Scout</strong></td><td>Tin nhắn cá nhân nào có user reply vs ignored</td><td>Cập nhật template theo thị trường: Brazil user phản hồi tốt với emoji 🇧🇷 + meme references</td><td>Mỗi 2 tuần</td></tr>
+        <tr class="thl"><td><strong>AMF Meme</strong></td><td>Meme nào được share nhiều nhất (TG forward count)</td><td>Replicate style của meme viral → dùng làm template mặc định cho tuần tiếp</td><td>Sau mỗi match day</td></tr>
+        <tr><td><strong>AS Anti-Sybil</strong></td><td>False positive/negative rate (accounts bị flag oan vs bot qua được)</td><td>Điều chỉnh threshold DBSCAN: epsilon và min_samples cho phù hợp với user growth</td><td>Mỗi tháng</td></tr>
+      </tbody>
+    </table></div>
+    <div class="box note mt12">
+      <div class="bt">🤖 Về "tự học" này</div>
+      <p>Đây không phải machine learning training — AI Army không có model mới được train. "Tự học" ở đây là <strong>prompt evolution</strong>: AD module theo dõi metrics, khi phát hiện pattern (vd: quiz về "top scorer" luôn có 60%+ engagement), nó tự update system prompt của AQ để tăng tỷ lệ loại câu đó lên. Bạn review và approve prompt changes tuần 1 lần qua Notion task.</p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer style="text-align:center;padding:36px 20px;border-top:1px solid var(--line);color:var(--muted);font-family:var(--f3);font-size:10px;background:var(--ink2);">
+  <div style="font-size:32px;margin-bottom:10px;">⚽</div>
+  <div><strong style="color:var(--g);">WC26 NFT FANTASY</strong> · Master Plan v3.0 · Số liệu chính xác từ WC26 Master Plan FL</div>
+  <div style="margin-top:8px;">Seed $75K → Community Sale $188.5K + Stadium NFT $150K (cùng giai đoạn) → Mystery Box $3.24M · Total Expected: <strong style="color:var(--gold);">$413,500</strong></div>
+  <div style="margin-top:6px;color:var(--dim);">AI Army 8 modules · TG Daily Report 08:00 UTC · Approve in 1 tap · ≤ 30 min/day supervision</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Nav active scroll
+const secs=document.querySelectorAll('section[id]');
+const nls=document.querySelectorAll('.nl');
+const ob=new IntersectionObserver(e=>{e.forEach(n=>{if(n.isIntersecting){nls.forEach(l=>l.classList.remove('on'));const l=document.querySelector(`.nl[href="#${n.target.id}"]`);if(l)l.classList.add('on');}});},{threshold:.15,rootMargin:'-56px 0px -60% 0px'});
+secs.forEach(s=>ob.observe(s));
+
+// Checklist
+document.querySelectorAll('.cb
